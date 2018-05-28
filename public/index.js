@@ -1,0 +1,1 @@
+/* This file will handle all interactions with the page including creating and sending post requests */
