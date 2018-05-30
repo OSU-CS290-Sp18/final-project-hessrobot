@@ -10,9 +10,11 @@ var mongoHost = process.env.MONGO_HOST;
 var mongoPort = process.env.MONGO_PORT || 27017;
 var mongoUser = process.env.MONGO_USER;
 var mongoPassword = process.env.MONGO_PASSWORD;
-var mogoDBName = process.env.MONGO_DB;
+var mongoDBName = process.env.MONGO_DB;
 
-var mongoURL = 'mongodb://' + mongoUser + ':' + mongoPassword + '@' + mongoHost + ':' _ mongoPort + '/' + mongoDBName;
+var mongoURL = "mongodb://" + mongoUser + ':' + mongoPassword + '@' + mongoHost + ':' + mongoPort + '/' + mongoDBName;
+
+console.log(mongoURL);
 
 var mongoConnection = null;
 
