@@ -1,0 +1,33 @@
+{
+  "name": "final-project-hessrobot",
+  "version": "1.0.0",
+  "description": "Site that does stuff for Hess.",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "mongodb": "^3.1.0-beta4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OSU-CS290-Sp18/final-project-hessrobot.git"
+  },
+  "keywords": [
+    "Hess",
+    "Robot",
+    "Dropin",
+    "Hessrobot"
+  ],
+  "author": "Phillip Mestas, Thang Kim, Reese Benson, Jason O'Brien",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/OSU-CS290-Sp18/final-project-hessrobot/issues"
+  },
+  "homepage": "https://github.com/OSU-CS290-Sp18/final-project-hessrobot#readme"
+}
