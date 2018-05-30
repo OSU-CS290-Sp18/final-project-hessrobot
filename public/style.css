@@ -1,1 +1,110 @@
 /* Ew CSS is gross*/ 
+body {
+  font-family: Helvetica, sans-serif;
+  margin: 0;
+  background-color: #eee;
+}
+
+a {
+  text-decoration: none;
+}
+
+.site-title {
+  margin: 0;
+  padding: 10px 20px;
+  font-size: 30px;
+  font-weight: 100;
+  background-color: #FF7A01;
+  color: Black;
+}
+
+.navbar {
+  background-color: #fff;
+  font-size: 18px;
+  line-height: 22px;
+  height: 40px;
+  box-shadow: 0px 10px 18px #888888;
+}
+
+.navlist {
+  margin: 0 0  0 20px;
+  padding: 0;
+}
+
+.navitem {
+  display: inline-block;
+  padding-top:10px;
+}
+
+
+.navbar-search {
+  float: right;
+  margin-right: 20px;
+  padding: 0;
+  line-height: 38px;
+}
+
+#navbar-search-input {
+  padding: 4px;
+  font-size: 16px;
+  background-color: #eee;
+  border: 1px solid #dadada;
+  border-radius: 2px;
+}
+
+#navbar-search-input:focus {
+  outline: none;
+  background-color: #fff;
+}
+
+#navbar-search-button {
+  margin-left: -5px;
+  font-size: 16px;
+  background: none;
+  border: none;
+  color: #343434;
+  cursor: pointer;
+}
+
+#navbar-search-button:hover {
+  color: #319df6;
+}
+
+#navbar-search-button:focus {
+  color: #319df6;
+  outline: none;
+}
+.main-container{
+  display:flex;
+}
+.side-bar{
+  flex:1;
+  display:flex;
+  flex-direction: column;
+  background-color:#00ACEE;
+  color:white;
+  border-style: solid;
+  border-width: 0px 2px 0px 0px;
+  border-color:white;
+}
+.side-list{
+  display: block;
+}
+.side-item{
+
+}
+.event-container {
+  margin: 50px 10%;
+  display: flex;
+  flex-direction: column; 
+  flex-wrap: wrap;
+  flex:5;
+}
+
+.event {
+  flex: 0 1 28%;
+  display: flex;
+  margin: 2px;
+  padding: 20px;
+  border: 1px solid Black;
+}

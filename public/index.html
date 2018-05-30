@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta charset="utf-8">
+    <title>DROP'N</title>
+
+
+    <link rel="stylesheet" href="style.css" media="screen">
+
+    <!-- This script incorporates SVG icons from Font Awesome: http://fontawesome.com/ -->
+    <script src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" defer></script>
+
+    <script src="/index.js" charset="utf-8" defer></script>
+
+  </head>
+
+  <body>
+
+    <header>
+      <!-- The <i> tag below includes the lizzard hand icon from Font Awesome -->
+      <a href="#"><h1 class="site-title"><i class="far fa-flag"></i>Drop'N</h1></a>
+
+      <nav class="navbar">
+        <ul class="navlist">
+          <li class="navitem context">There are currently</li>
+          <li class="navitem counter">x</li>
+          <li class="navitem context">happening on campus!</li>
+          <li class="navitem navbar-search">
+            <input type="text" id="navbar-search-input" placeholder="Search...">
+            <button type="button" id="navbar-search-button"><i class="fas fa-search"></i></button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+   <main class="main-container">
+    <aside class= "side-bar">
+      <ul class="side-list">
+	<li class="side-item">Sports<div id="sports-button" class="side-bar-button"></div></li>
+	<li class="side-item">Food<div id="food-button" class="side-bar-button"></div></li>
+	<li class="side-item">Study<div id="study-button" class="side-bar-button"></div></li>
+	<li class="side-item">Chill<div id="chill-button" class="side-bar-button"></div></li>
+	<li class="side-item">Party<div id="party-button" class="side-bar-button"></div></li>
+	<li class="side-item">Other<div id="other-button" class="side-bar-button"></div></li>
+	<li class="side-item clear">Clear</li>
+    </aside>
+
+    <div class="event-container">
+	
+      <article id="map" class= "in-event">	
+       <img src="map_osu.PNG" alt"A map of Oregon State University">
+	<ul id="legend">	
+          <li class="legend-item">Selected Event<div class="marker active"></div></li> 
+          <li class="legend-item">Selected Event<div class="marker active"></div></li>
+      </article>
+	
+      <article class="event in-event">
+       <h1 class="event-title">
+		MY Event
+	<h1>
+	 <div class="edit-icon">
+          <i class="fas fa-edit"></i>
+        </div>
+        <div class="event-content">
+	  <div class= "event-description">
+          <p class="twit-text">
+           stuff about this event
+          </p>
+	  </div>
+	  <ul class="event-overview">
+	    <li class="overview-item">Location: <p class="location-input">Here</p></li>
+	    <li class="overview-item">Time: <p class="Time-input">12:00 PM</p></li>
+	    <li class="overview-item">Capacity: <p class="capacity-input">5</p></li>
+	    <li class="overview-item">Attending: <p class="attending-input">4</p></li>
+	    <li class="overview-item">Event Type: <p class="Event-Type">Sport</p></li>
+	  </div>
+	<div>Going</div>
+      </article>
+
+      <article class="event in-event">
+       <h1 class="event-title">
+		MY Event
+	<h1>
+	 <div class="edit-icon">
+          <i class="fas fa-edit"></i>
+        </div>
+        <div class="event-content">
+	  <div class= "event-description">
+          <p class="twit-text">
+           stuff about this event
+          </p>
+	  </div>
+	  <ul class="event-overview">
+	    <li class="overview-item">Location: <p class="location-input">Here</p></li>
+	    <li class="overview-item">Time: <p class="Time-input">12:00 PM</p></li>
+	    <li class="overview-item">Capacity: <p class="capacity-input">5</p></li>
+	    <li class="overview-item">Attending: <p class="attending-input">4</p></li>
+	    <li class="overview-item">Event Type: <p class="Event-Type">Sport</p></li>
+	  </div>
+	<div>Going</div>
+      </article>
+
+      </div>
+    </main>
+
+    <button type="button" id="create-event-button"><i class="fas fa-plus-circle"></i></button>
+
+    <div id="modal-backdrop" class="hidden"></div>
+    <div id="create-twit-modal" class="hidden">
+      <div class="modal-dialog">
+
+        <div class="modal-header">
+          <h3>Create an Event</h3>
+          <button type="button" class="modal-close-button">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="event-input-element">
+            <label for="event-title-input">Title</label>
+            <textarea id="event-title-input"></textarea>
+          </div>
+		
+          <div class="event-input-element">
+            <label for="event-description-input">Description</label>
+            <textarea id="event-description-input"></textarea>
+          </div>
+
+          <div class="event-input-element">
+            <label for="event-location-input">Location</label>
+            <textarea id="event-location-input"></textarea>
+          </div>
+
+          <div class="event-input-element">
+            <label for="event-time-input">Time</label>
+            <textarea id="event-time-input"></textarea>
+          </div>
+
+          <div class="event-input-element">
+            <label for="event-capactiy-input">Capacity</label>
+            <textarea id="event-capactiy-input"></textarea>
+          </div>
+
+          <div class="event-input-element drop-down">
+        	<button class="drop-btn">Event Type</button>
+		<div class="drop-content">
+	 	  <span> Sports </span>
+		  <span> Food </span>
+		  <span> Study </span>
+		  <span> Chill </span>
+		  <span> Party </span>
+		  <span> Other </span>
+		</div>
+	  </div>
+          
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="modal-cancel-button">Cancel</button>
+          <button type="button" class="modal-accept-button">Add Event</button>
+        </div>
+
+      </div>
+    </div>
+
+  </body>
+
+</html>
+
