@@ -14,8 +14,6 @@ var mongoDBName = process.env.MONGO_DB;
 
 var mongoURL = "mongodb://" + mongoUser + ':' + mongoPassword + '@' + mongoHost + ':' + mongoPort + '/' + mongoDBName;
 
-console.log(mongoURL);
-
 var mongoConnection = null;
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -26,6 +24,14 @@ app.use(express.static('public'));
 
 app.get('/', function(req, res){
 	res.status(200).render('homePage');
+});
+
+app.get('*', function(req,res){
+	res.status(404).render("404");
+});
+
+app.post('*', function(req,res){
+	res.status(404).send("Attempting to POST to unknown path.");
 });
 
 MongoClient.connect(mongoURL, function(err,connection){
