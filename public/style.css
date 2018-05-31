@@ -91,16 +91,55 @@ a {
   display: block;
 }
 .side-item{
-
+  display:inline-block;
+  margin: 30px 0px 0px 0px;
+  font-size:16px;
+  width:50%;
 }
+.side-bar-button{
+  display: inline-block;
+  background-color: white;
+  height:10px;
+  width:10px;
+  border-radius: 50%;
+  margin:0px 0px 0px 20px;
+}
+.side-bar-button:hover{
+  background-color:#afafaf
+}
+
 .event-container {
   margin: 50px 10%;
   display: flex;
   flex-direction: column; 
-  flex-wrap: wrap;
   flex:5;
 }
+.image{
+display:block;
+}
+#legend{
+display: block;
+font-color:black;
+font-size:14;
+border: solid  2px black;
+}
+.legend-item{
+display: block;
+padding: 10px;
+}
 
+.marker{
+display: inline-block;
+background-color:#90FB89;
+border-radius:50%;
+border:none;
+width: 16px;
+height: 16px;
+margin-left: 20px;
+}
+.marker.active{
+ border: 1px solid black;
+}
 .event {
   flex: 0 1 28%;
   display: flex;
@@ -108,3 +147,4 @@ a {
   padding: 20px;
   border: 1px solid Black;
 }
+
