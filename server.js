@@ -35,14 +35,16 @@ app.get('/', function(req, res){
 		else
 		{
 			let num = results.length;
-			res.status(200).render('homePage', {events: results, numEvents: num});
+			res.status(200).render('homePage', {events: results, numEvents: num, showCreateEvent: 1});
 		}
 	});
 });
 
 app.get("/:eventID", function (req, res, next){
 	let eventDataCollection = db.collection("eventData");
-	eventDataCollection.find({ eventID: req.params.eventID}).toArray(function (err, results){
+	//Make param to an int parse int
+	eventDataCollection.find({eventID: req.params.eventID}).toArray(function (err, results){
+		console.log(results.length);
 		if (err)
 		{
 			res.status(500).send("Error fetching event");
@@ -80,8 +82,8 @@ app.post("/addEvent", function (req, res, next){
 				eventTime: req.body.eventTime,
 				eventCapacity: req.body.eventCapacity,
 				eventType: req.body.eventType,
-				eventGoing: 0,
-				eventId: length
+				eventGoing: 1,
+				eventID: length
 			};
 			let eventDataCollection = db.collection("eventData");
 			eventDataCollection.insertOne(eventObject, function(err, result) {
