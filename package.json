@@ -12,7 +12,9 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "handlebars views/partials/eventCardTemplate.handlebars -f public/eventCardTemplate.js",
+    "prestart": "npm run build"
   },
   "repository": {
     "type": "git",

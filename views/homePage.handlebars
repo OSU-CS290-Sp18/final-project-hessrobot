@@ -1,1 +1,83 @@
-Home page 
+   {{> header}}   
+
+   <main class="main-container">
+	{{> sidebar}}
+    <div class="event-container">
+	
+      <article id="map" class= "in-event">	
+       <img class="image" src="map_osu.PNG" alt"A map of Oregon State University">
+	<ul id="legend">	
+          <li class="legend-item">Selected Event<div class="marker active disable"></div></li> 
+          <li class="legend-item">Event<div class="marker disable"></div></li>
+      </article>
+	
+      <article class="event in-event">
+	 <div class="edit-icon">
+          <i class="fas fa-edit"></i>
+        </div>
+	{{#each events}}
+		{{> eventCardTemplate}}
+	{{/each}}
+      </div>
+    </main>
+   {{#if showCreateEvent}}
+   <button type="button" id="create-event-button"><i class="fas fa-plus-circle"></i></button>
+
+    <div id="modal-backdrop" class="hidden"></div>
+    <div id="create-modal" class="hidden">
+      <div class="modal-dialog">
+
+        <div class="modal-header">
+          <h3>Create an Event</h3>
+          <button type="button" class="modal-close-button">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="event-input-element">
+            <label for="event-title-input">Title</label>
+            <textarea id="event-title-input"></textarea>
+          </div>
+		
+          <div class="event-input-element">
+            <label for="event-description-input">Description</label>
+            <textarea id="event-description-input"></textarea>
+          </div>
+
+          <div class="event-input-element">
+            <label for="event-location-input">Location</label>
+            <textarea id="event-location-input"></textarea>
+          </div>
+
+          <div class="event-input-element">
+            <label for="event-time-input">Time</label>
+            <textarea id="event-time-input"></textarea>
+          </div>
+
+          <div class="event-input-element">
+            <label for="event-capacity-input">Capacity</label>
+            <textarea id="event-capacity-input"></textarea>
+          </div>
+
+          <div class="event-input-element drop-down">
+        	<button class="drop-btn">Event Type</button>
+		<div class="drop-content">
+	 	  <p> Sports </p>
+		  <p> Food </p>
+		  <p> Study </p>
+		  <p> Chill </p>
+		  <p> Party </p>
+		  <p> Other </p>
+		</div>
+	  </div>
+          
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="modal-cancel-button">Cancel</button>
+          <button type="button" class="modal-accept-button">Add Event</button>
+        </div>
+
+      </div>
+    </div>
+  {{/if}}
+
