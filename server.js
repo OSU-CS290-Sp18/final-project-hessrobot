@@ -20,12 +20,13 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 app.use(bodyParser.json());
-app.use(express.static('public'));
+app.use(express.static("public"));
+
 
 var length = 0;
 
 app.get('/', function(req, res){
-	let eventDataCollection = mongoConnection.collection("eventData");
+	let eventDataCollection = db.collection("eventData");
 	eventDataCollection.find({}).toArray(function (err, results) {
 		if (err)
 		{
@@ -40,16 +41,15 @@ app.get('/', function(req, res){
 });
 
 app.get("/:eventID", function (req, res, next){
-	let eventDataCollection = mongoConnection.collection("eventData");
-
+	let eventDataCollection = db.collection("eventData");
 	eventDataCollection.find({ eventID: req.params.eventID}).toArray(function (err, results){
 		if (err)
 		{
 			res.status(500).send("Error fetching event");
 		}
-		else if (results.length > req.params.eventID)
+		else if (results.length > 0)
 		{
-			res.status(200).render('eventPage', results[req.params.eventID]);
+			res.status(200).render('eventPage', results[0]);
 		}
 		else
 		{
@@ -59,14 +59,14 @@ app.get("/:eventID", function (req, res, next){
 });
 
 app.get('*', function(req,res){
-	res.status(404).render("404");
+	res.status(404).render("404", {numEvents: 0});
 });
 
 //Needs all six in body.
 app.post("/addEvent", function (req, res, next){
 	if (req.body)
 	{
-		let eventDataCollection = mongoConnection.collection("eventData");
+		let eventDataCollection = db.collection("eventData");
 		eventDataCollection.find({}).toArray(function (err, results){
 			if (err)
 			{
@@ -83,7 +83,7 @@ app.post("/addEvent", function (req, res, next){
 				eventGoing: 0,
 				eventId: length
 			};
-			let eventDataCollection = mongoConnection.collection("eventData");
+			let eventDataCollection = db.collection("eventData");
 			eventDataCollection.insertOne(eventObject, function(err, result) {
 				if (err){
 					res.status(500).send("Error inserting to DB");
@@ -105,14 +105,14 @@ app.post("/addEvent", function (req, res, next){
 app.post("editEvent/:eventID", function(req, res, next) {
 	if (req.body)
 	{
-		let eventDataCollection = mongoConnection.collection("eventData");
+		let eventDataCollection = db.collection("eventData");
 		eventDataCollection.find({}).toArray(function (err, results){
 			if (err)
 			{
 				res.status(500).send("Error in database");
 			}
 			length = results.length;
-			let eventDataCollection = mongoConnection.collection("eventData");
+			let eventDataCollection = db.collection("eventData");
 			let id = req.params.eventID;
 			if (length >= id || id < 0)
 			{
@@ -148,14 +148,14 @@ app.post("editEvent/:eventID", function(req, res, next) {
 
 //Doesn't need anything in body as of now.
 app.post("goingToEvent/:eventID", function(req, res, next) {
-	let eventDataCollection = mongoConnection.collection("eventData");
+	let eventDataCollection = db.collection("eventData");
 	eventDataCollection.find({}).toArray(function (err, results){
 		if (err)
 		{
 			res.status(500).send("Error in database");
 		}
 		length = results.length;
-		let eventDataCollection = mongoConnection.collection("eventData");
+		let eventDataCollection = db.collection("eventData");
 		let id = req.params.eventID;
 		if (length >= id || id < 0)
 		{
@@ -193,6 +193,7 @@ MongoClient.connect(mongoURL, function(err,connection){
 		throw err;
 	}
 	mongoConnection = connection;
+	db = connection.db();
 	app.listen(port,function(){
 		console.log("Server Listening on port: ", port);
 	});
