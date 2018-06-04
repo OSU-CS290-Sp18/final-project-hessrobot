@@ -34,10 +34,27 @@ function checkValidPost(){
 	var capacity = document.getElementById("event-capacity-input");
 	if(title.value=='' || description.value=='' || locations.value=='' || time.value=='' || capacity.value==''){
 		alert("you must fill out all boxes");
-		closeModal();
 	}
 	else{
 		console.log("valid post");
+		//example for you nims
+		let postRequest = new XMLHttpRequest(); //We gonna use this thing to make and send post request to server.
+		let postURL = "/addEvent"; //This the URL the server needs to make a new event.
+		postRequest.open("POST", postURL); //Open the request so we can put shit in it.
+	
+		let eventObject = { //Make the object to send
+			eventTitle: title.value,
+			eventDescription: description.value,
+			eventLocation: locations.value,
+			eventType: "Chill", //Temporary since the box is not set up yet
+			eventCapacity: capacity.value,
+			eventTime: time.value
+		};
+
+		let requestBody = JSON.stringify(eventObject); //Change formatting
+		postRequest.setRequestHeader('Content-Type', 'application/json'); //Write header of request object
+		postRequest.send(requestBody); //SEND IT!
+	
 		closeModal();
 	}
 }
