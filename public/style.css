@@ -116,16 +116,22 @@ background-color:#90FB89;
   flex-direction: column; 
   flex:5;
 }
-.image{
-width:80%;
+#map{
+position:relative;
+width:90%;
 display:block;
 margin-left:8%;
 }
+.image{
+width:80%;
+}
+
 #legend{
 display: block;
 font-color:black;
 font-size:14;
 border: solid  2px black;
+width:76%;
 }
 .legend-item{
 display: block;
@@ -134,7 +140,7 @@ padding: 10px;
 
 .marker{
 display: inline-block;
-background-color:#90FB89;
+background-color: #FF7A01;
 border-radius:50%;
 border:none;
 width: 16px;
@@ -367,7 +373,78 @@ margin-left: 20px;
  background-color:#aaa;
  cursor:pointer;
 }
-
+.marker.MU{
+position:absolute;
+right: 45.9%;
+bottom: 71%;
+z-index:2000;
+}
+.marker.SEC{
+position:absolute;
+right: 40.75%;
+bottom: 71%;
+z-index:2000;
+}
+.marker.library{
+position:absolute;
+right: 36.5%;
+bottom: 72%;
+z-index:2000;
+}
+.marker.dixon{
+position:absolute;
+right: 45%;
+bottom: 60%;
+z-index:2000;
+}
+.marker.reeser{
+position:absolute;
+right:53%;
+bottom: 38%;
+z-index:2000;
+}
+.marker.KEC{
+position:absolute;
+right: 45%;
+bottom: 85%;
+z-index:2000;
+}
+.marker.McNary{
+position:absolute;
+right: 23.7%;
+bottom:65%;
+z-index:2000;
+}
+.marker.West{
+position:absolute;
+right: 61%;
+bottom: 64.5%;
+z-index:2000;
+}
+.marker.Arnold{
+position:absolute;
+right: 41.5%;
+bottom: 43.2%;
+z-index:2000;
+}
+.marker.Bings{
+position:absolute;
+right: 50.25%;
+bottom: 64.5%;
+z-index:2000;
+}
+.marker.IM{
+position:absolute;
+right: 52%;
+bottom: 57%;
+z-index:2000;
+}
+.marker.Gill{
+position:absolute;
+right: 51%;
+bottom: 47%;
+z-index:2000;
+}
 .hidden{
 display:none;
 }
