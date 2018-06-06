@@ -1,3 +1,7 @@
+//Currently all the gets and add event work.  Working on testing edit event.
+
+
+
 var express = require("express");
 var exphbs = require("express-handlebars");
 var bodyParser = require("body-parser");
@@ -35,15 +39,60 @@ app.get('/', function(req, res){
 		else
 		{
 			let num = results.length;
-			res.status(200).render('homePage', {events: results, numEvents: num, showCreateEvent: 1});
+			let i = 0;
+			let showMU = 0;
+			let showSEC = 0;
+			let showLibrary = 0;
+			let showDixon = 0;
+			let showReeser = 0;
+			let showKEC = 0;
+			let showMcNary = 0;
+			let showWest = 0;
+			let showArnold = 0;
+			let showBings = 0;
+			let showIM = 0;
+			let showGill = 0;
+			for (i = 0; i < num; i++)
+			{
+				if (results[i].eventLocation == "MU")
+					showMU = 1;
+				if (results[i].eventLocation == "Library")
+					showLibrary = 1;
+				if (results[i].eventLocation == "SEC")
+					showSEC = 1;
+				if (results[i].eventLocation == "KEC")
+					showKEC = 1;
+				if (results[i].eventLocation == "Mcnary Dinning")
+					showMcNary = 1;
+				if (results[i].eventLocation == "West Dinning")
+					showWest = 1;
+				if (results[i].eventLocation == "Arnold Dinning")
+					showArnold = 1;
+				if (results[i].eventLocation == "Bings")
+					showBings = 1;
+				if (results[i].eventLocation == "IM Fields")
+					showIM = 1;
+				if (results[i].eventLocation == "Dixon")
+					showDixon = 1;
+				if (results[i].eventLocation == "Reeser")
+					showReeser = 1;
+				if (results[i].eventLocation == "Gill")
+					showGill = 1;
+			}
+			res.status(200).render('homePage', {events: results, numEvents: num, showCreateEvent: 1,
+				showMU: showMU, showLibrary: showLibrary, showSEC: showSEC, showKEC: showKEC, 
+				showMcNary: showMcNary, showWest: showWest, showArnold: showArnold, showBings: showBings, 
+				showIM: showIM, showDixon: showDixon, showReeser: showReeser, showGill: showGill
+			});
 		}
 	});
 });
 
-app.get("/:eventID", function (req, res, next){
+//Event page currently not set to do anything.  Do we even want to include this?
+app.get("/eventPage/:eventID", function (req, res, next){
 	let eventDataCollection = db.collection("eventData");
-	//Make param to an int parse int
-	eventDataCollection.find({eventID: req.params.eventID}).toArray(function (err, results){
+	let ID = parseInt(req.params.eventID, 10);
+	eventDataCollection.find({eventID: ID}).toArray(function (err, results){
 		console.log(results.length);
 		if (err)
 		{
@@ -60,11 +109,17 @@ app.get("/:eventID", function (req, res, next){
 	});
 });
 
+//Danger zone.  Not for final product, for testing
+app.get("/wipe/confirm", function (req, res, next){
+	let eventDataCollection = db.collection("eventData");
+	eventDataCollection.deleteMany({});
+	console.log("Database wiped.");
+});
+
 app.get('*', function(req,res){
 	res.status(404).render("404", {numEvents: 0});
 });
 
-//Needs all six in body.
 app.post("/addEvent", function (req, res, next){
 	if (req.body)
 	{
@@ -115,7 +170,7 @@ app.post("editEvent/:eventID", function(req, res, next) {
 			}
 			length = results.length;
 			let eventDataCollection = db.collection("eventData");
-			let id = req.params.eventID;
+			let id = parseInt(req.params.eventID,10);
 			if (length >= id || id < 0)
 			{
 				next();
@@ -158,12 +213,13 @@ app.post("goingToEvent/:eventID", function(req, res, next) {
 		}
 		length = results.length;
 		let eventDataCollection = db.collection("eventData");
-		let id = req.params.eventID;
+		let id = parseInt(req.params.eventID,10);
 		if (length >= id || id < 0)
 		{
 			next();
 		}
 		let newGoing = results[id].eventGoing + 1; //Alternative is to have client write new going number to req body.
+		console.log("newGoing: ", newGoing);
 		eventDataCollection.updateOne(
 			{ eventID: id },
 			{ $push: {  
