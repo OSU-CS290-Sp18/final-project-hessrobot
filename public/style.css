@@ -116,9 +116,19 @@ background-color:#90FB89;
   flex-direction: column; 
   flex:5;
 }
+@media screen and (min-width:1000px){
 #map{
 position:relative;
+min-width:1000px;
 width:90%;
+display:block;
+margin-left:8%;
+}
+}
+
+#map{
+position:relative;
+width:500px;
 display:block;
 margin-left:8%;
 }
@@ -206,9 +216,9 @@ margin-left: 20px;
 }
 .go-btn{
   position:relative;
-  left:75%;
   width:150px;
   padding 0px;
+  bottom:10px;
   border-radius:15px;
   background-color:#90FB89;
   color:white;
@@ -317,8 +327,7 @@ margin-left: 20px;
 .modal-footer {
   display: flex;
   justify-content: flex-end;
-  padding: 10px 10px 20px 10px;
-}
+  padding: 10px 10px 20px 10px}
 
 .modal-footer button {
   font-size: 20px;
@@ -343,7 +352,7 @@ margin-left: 20px;
 .modal-footer .modal-accept-button:hover {
   background-color: #087dde;
 }
-.drop-down{
+>>.drop-down{
 
 }
 .drop-btn{
@@ -357,7 +366,7 @@ margin-left: 20px;
 .drop-content {
     display: none;
     position: absolute;
-    background-color: #f1f1f1;
+    bac2ground-color: #f1f1f1;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -375,76 +384,210 @@ margin-left: 20px;
 }
 .marker.MU{
 position:absolute;
+width: 8px;
+height:8px;
+right: 228px;
+bottom: 320px;
+z-index:2000;
+}
+.marker.SEC{
+position:absolute;
+width: 8px;
+height:8px;
+right: 202px;
+bottom: 320px;
+z-index:2000;
+}
+.marker.library{
+position:absolute;
+width: 8px;
+height:8px;
+right: 182px;
+bottom: 325px;
+z-index:2000;
+}
+.marker.dixon{
+position:absolute;
+width: 8px;
+height:8px;
+right: 225px;
+bottom: 280px;
+z-index:2000;
+}
+.marker.reeser{
+position:absolute;
+width: 8px;
+height:8px;
+right: 264px;
+bottom: 200px;
+z-index:2000;
+}
+.marker.KEC{
+position:absolute;
+width: 8px;
+height:8px;
+right: 222px;
+bottom: 373px;
+z-index:2000;
+}
+.marker.McNary{
+position:absolute;
+width: 8px;
+height:8px;
+right: 117px;
+bottom: 302px;
+z-index:2000;
+}
+.marker.Arnold{
+position:absolute;
+width: 8px;
+height:8px;
+right: 207px;
+bottom: 224px;
+z-index:2000;
+}
+.marker.West{
+position:absolute;
+width: 8px;
+height:8px;
+right: 305px;
+bottom: 300px;
+z-index:2000;
+}
+.marker.Bings{
+position:absolute;
+width: 8px;
+height:8px;
+right: 250px;
+bottom: 302px;
+z-index:2000;
+}
+.marker.IM{
+position:absolute;
+width: 8px;
+height:8px;
+right: 259px;
+bottom: 272px;
+z-index:2000;
+}
+.marker.Gill{
+position:absolute;
+width: 8px;
+height:8px;
+right: 255px;
+bottom: 238px;
+z-index:2000;
+}
+@media screen and (min-width:1000px){
+.go-btn{
+  position:relative;
+  width:150px;
+  padding 0px;
+  border-radius:15px;
+  background-color:#90FB89;
+  color:white;
+  font-size:30px;
+  text-align:center;
+}
+
+.marker.MU{
+position:absolute;
+width: 16px;
+height:16px;
 right: 45.9%;
 bottom: 71%;
 z-index:2000;
 }
 .marker.SEC{
 position:absolute;
+width: 16px;
+height:16px;
 right: 40.75%;
 bottom: 71%;
 z-index:2000;
 }
 .marker.library{
 position:absolute;
+width: 16px;
+height:16px;
 right: 36.5%;
 bottom: 72%;
 z-index:2000;
 }
 .marker.dixon{
 position:absolute;
+width: 16px;
+height:16px;
 right: 45%;
 bottom: 60%;
 z-index:2000;
 }
 .marker.reeser{
 position:absolute;
+width: 16px;
+height:16px;
 right:53%;
 bottom: 38%;
 z-index:2000;
 }
 .marker.KEC{
 position:absolute;
+width: 16px;
+height:16px;
 right: 45%;
 bottom: 85%;
 z-index:2000;
 }
 .marker.McNary{
 position:absolute;
+width: 16px;
+height:16px;
 right: 23.7%;
 bottom:65%;
 z-index:2000;
 }
 .marker.West{
 position:absolute;
+width: 16px;
+height:16px;
 right: 61%;
 bottom: 64.5%;
 z-index:2000;
 }
 .marker.Arnold{
 position:absolute;
+width: 16px;
+height:16px;
 right: 41.5%;
 bottom: 43.2%;
 z-index:2000;
 }
 .marker.Bings{
 position:absolute;
+width: 16px;
+height:16px;
 right: 50.25%;
 bottom: 64.5%;
 z-index:2000;
 }
 .marker.IM{
 position:absolute;
+width: 16px;
+height:16px;
 right: 52%;
 bottom: 57%;
 z-index:2000;
 }
 .marker.Gill{
 position:absolute;
+width: 16px;
+height:16px;
 right: 51%;
 bottom: 47%;
 z-index:2000;
 }
+}
 .hidden{
 display:none;
 }
+
