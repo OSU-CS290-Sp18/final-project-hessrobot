@@ -113,6 +113,7 @@ function checkValidPost(){
 			/*
  * 			TODO
  * 			ADD EVENT TO THE DOM
+ * 			ADD EVENT LISTENER TO ITS MODIFY BUTTON AND GOING BUTTON
  * 			ALSO ADD DOT IF NEW LOCATION
  * 			DO THE THING
  * 			*/
@@ -143,6 +144,44 @@ function checkValidPost(){
 	}
 }
 
+function going(event)
+{
+	let targetNode = event.currentTarget; //Get some nodes
+	targetNode.classList.add("hidden");
+	
+	let contentNode = targetNode.previousSibling.previousSibling;
+	let capacityNode = contentNode.querySelector(".capacity-input");
+	let idNode = contentNode.querySelector(".id");
+	let goingNode = contentNode.querySelector(".attending-input");
+
+	id = idNode.textContent; //Set ID so we know which object were changing
+	let going = parseInt(goingNode.textContent,10);
+	let cap = parseInt(capacityNode.textContent,10);
+	
+	if (going === cap)
+	{
+		alert("Event is at maximum capacity");
+	}
+	else
+	{
+			let newGoing = going + 1;
+			goingNode.textContent = newGoing.toString();
+			let postRequest = new XMLHttpRequest(); //We gonna use this thing to make and send post request to server.
+			let postURL = "/goingToEvent/" + id.toString(); //This the URL the server needs to make a new event.
+			console.log(postURL);
+			postRequest.open("POST", postURL); //Open the request so we can put shit in it.
+			
+			let eventObject = { //Make the object to send
+				eventGoing: newGoing
+			};
+			
+			let requestBody = JSON.stringify(eventObject); //Change formatting
+			postRequest.setRequestHeader('Content-Type', 'application/json'); //Write header of request object
+			postRequest.send(requestBody); //SEND IT!
+	}
+}
+
+
 function sidebutton(){
 	alert("fuk u");
 }
@@ -160,6 +199,7 @@ var postModalButton = document.getElementById("create-event-button");
 var closeModalButton = document.getElementsByClassName("modal-close-button")[0];
 
 var editButton = document.getElementsByClassName("edit-icon");
+var goingButton = document.getElementsByClassName("go-btn");
 
 closeModalButton.addEventListener("click",closeModal);
 postModalButton.addEventListener("click",openModal);
@@ -168,3 +208,6 @@ makeEvent.addEventListener("click",checkValidPost);
 //Add to all event buttons, not just one
 for (let i = 0; i < editButton.length; i++)
 	editButton[i].addEventListener("click",openModalEdit);
+
+for (let i = 0; i < goingButton.length; i++)
+	goingButton[i].addEventListener("click",going);

@@ -198,7 +198,7 @@ app.post("/editEvent/:eventID", function(req, res, next) {
 	}
 });
 
-//Doesn't need anything in body as of now.
+//Adds one to going when the going button is clicked.
 app.post("/goingToEvent/:eventID", function(req, res, next) {
 	let eventDataCollection = db.collection("eventData");
 	eventDataCollection.find({}).toArray(function (err, results){
@@ -213,21 +213,16 @@ app.post("/goingToEvent/:eventID", function(req, res, next) {
 		{
 			next();
 		}
-		let newGoing = results[id].eventGoing + 1; //Alternative is to have client write new going number to req body.
-		console.log("newGoing: ", newGoing);
+		let newGoing = req.body.eventGoing; //Alternative is to have client write new going number to req body.
 		eventDataCollection.updateOne(
 			{ eventID: id },
-			{ $push: {  
+			{ $set: {  
 				eventGoing: newGoing,
 			}},
 			function (err, result) {
 				if (err)
 				{
-					res.status(500).send("Error fetching from DB");
-				}
-				else
-				{
-					res.status(200).send("Success");
+					console.log(err);                                 
 				}
 			});
 	});
