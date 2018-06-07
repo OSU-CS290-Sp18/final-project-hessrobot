@@ -106,13 +106,6 @@ app.get("/eventPage/:eventID", function (req, res, next){
 	});
 });
 
-//Danger zone.  Not for final product, for testing
-app.get("/wipe/confirm", function (req, res, next){
-	let eventDataCollection = db.collection("eventData");
-	eventDataCollection.deleteMany({});
-	console.log("Database wiped.");
-});
-
 //404 LK's lover not found
 app.get('*', function(req,res){
 	res.status(404).render("404", {numEvents: 0});
@@ -213,7 +206,7 @@ app.post("/goingToEvent/:eventID", function(req, res, next) {
 		{
 			next();
 		}
-		let newGoing = req.body.eventGoing; //Alternative is to have client write new going number to req body.
+		let newGoing = req.body.eventGoing; 
 		eventDataCollection.updateOne(
 			{ eventID: id },
 			{ $set: {  

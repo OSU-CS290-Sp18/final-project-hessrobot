@@ -1,5 +1,24 @@
 /* This file will handle all interactions with the page including creating and sending post requests */
 
+//TODO List (For Jason and LK)
+/*
+ * Make the side bar turn green and filter when clicked.  One at a time.
+ * Location dots too same as this^
+ * Make search bar work on the top (Make sure that if filters are on it deletes the ones that don't fit the filter also.)
+ * Add event to the DOM when it is created.
+ * Add Coordinates for IM Field (ask Reese).
+ * Error Check and make sure all dots have correct coordinates set up.
+ * Delete single event page function from server.js if not gonna use
+ *
+ * Extra ideas:
+ * Add a delete button and delete functionality
+ * Add password support for editing/deleting events
+ * Add a single event page (with comments)
+ */
+
+//Phill can do all the extra stuff so ask him if you want but hes probably to lazy to actually do it himself cus diminishing returns.
+//Reference assignment 3 and 5.1 as you are basically just doing a little more complex version of both.
+
 var new_event = 1;
 var id = 0;
 
