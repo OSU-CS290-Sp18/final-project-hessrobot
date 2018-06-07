@@ -245,6 +245,12 @@ var chill = document.getElementById("chill-button");
 var party = document.getElementById("party-button");
 var other = document.getElementById("other-button");
 //end of filer buttons
+
+//Search Bar 
+var searchBar = document.getElementById("navbar-search-input");
+//function searchFilter(){
+	
+//searchBar.addEventListener('input',);
 var makeEvent = document.getElementsByClassName("modal-accept-button")[0];
 var postModalButton = document.getElementById("create-event-button");
 var closeModalButton = document.getElementsByClassName("modal-close-button")[0];
