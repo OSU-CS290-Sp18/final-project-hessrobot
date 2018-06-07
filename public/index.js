@@ -143,11 +143,26 @@ function checkValidPost(){
 	}
 }
 
+function sidebutton(){
+	alert("fuk u");
+}
 
+//Filter buttons
+var sport = document.getElementById("sports-button");
+var food = document.getElementById("food-button");
+var study = document.getElementById("study-button");
+var chill = document.getElementById("chill-button");
+var party = document.getElementById("party-button");
+var other = document.getElementById("other-button");
+sport.addEventListener("click",sidebutton);
 var makeEvent = document.getElementsByClassName("modal-accept-button")[0];
 var postModalButton = document.getElementById("create-event-button");
 var closeModalButton = document.getElementsByClassName("modal-close-button")[0];
+<<<<<<< HEAD
+
+=======
 var editButton = document.getElementsByClassName("edit-icon");
+>>>>>>> fcc9e7b05c8a381d64da379628f1fb2eaba68e45
 
 closeModalButton.addEventListener("click",closeModal);
 postModalButton.addEventListener("click",openModal);
