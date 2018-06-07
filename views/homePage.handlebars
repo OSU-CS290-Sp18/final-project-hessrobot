@@ -1,1 +1,128 @@
-Home page 
+   {{> header}}   
+
+   <main class="main-container">
+	{{> sidebar}}
+    <div class="event-container">
+	
+      <article id="map" class= "in-event">	
+       <img class="image" src="map_osu.PNG" alt"A map of Oregon State University">
+       {{#if showMU}}
+      	 <div class="marker MU"></div>
+ 	 {{/if}}
+       {{#if showSEC}}
+      	 <div class="marker SEC"></div>
+ 	 {{/if}}
+       {{#if showLibrary}}
+      	 <div class="marker library"></div>
+	  {{/if}}
+       {{#if showDixon}}
+      	 <div class="marker dixon"></div>
+ 	 {{/if}}
+       {{#if showReeser}}
+      	 <div class="marker reeser"></div>
+ 	 {{/if}}
+       {{#if showKEC}}
+      	 <div class="marker KEC"></div>
+ 	 {{/if}}
+       {{#if showMcNary}}
+      	 <div class="marker McNary"></div>
+ 	 {{/if}}
+       {{#if showWest}}
+      	 <div class="marker West"></div>
+ 	 {{/if}}
+       {{#if showArnold}}
+     	  <div class="marker Arnold"></div>
+ 	 {{/if}}
+       {{#if showBings}}
+      	 <div class="marker Bings"></div>
+ 	 {{/if}}
+       {{#if showIM}}
+     	  <div class="marker IM"></div>
+ 	 {{/if}}
+       {{#if showGill}}
+      	 <div class="marker Gill"></div>
+ 	 {{/if}}
+	<ul id="legend">	
+          <li class="legend-item">Selected Event<div class="marker active disable"></div></li> 
+          <li class="legend-item">Event<div class="marker disable"></div></li>
+      </article>
+	
+	{{#each events}}
+		{{> eventCardTemplate}}
+	{{/each}}
+      </div>
+    </main>
+   {{#if showCreateEvent}}
+   <button type="button" id="create-event-button"><i class="fas fa-plus-circle"></i></button>
+
+    <div id="modal-backdrop" class="hidden"></div>
+    <div id="create-modal" class="hidden">
+      <div class="modal-dialog">
+
+        <div class="modal-header">
+          <h3>Create an Event</h3>
+          <button type="button" class="modal-close-button">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="event-input-element">
+            <label for="event-title-input">Title</label>
+            <textarea id="event-title-input"></textarea>
+          </div>
+		
+          <div class="event-input-element">
+            <label for="event-description-input">Description</label>
+            <textarea id="event-description-input"></textarea>
+          </div>
+
+          <div class="event-input-element">
+            <label for="event-time-input">Time</label>
+            <textarea id="event-time-input"></textarea>
+          </div>
+
+          <div class="event-input-element">
+            <label for="event-capacity-input">Capacity</label>
+            <textarea id="event-capacity-input"></textarea>
+          </div>
+
+          <div class="event-input-element drop-down">
+		<label for="event-type-input">Event Type</label>
+        	<select id="event-type-input" name="eventType">Event Type
+                  <option value="Sports"> Sports </option>
+                  <option value="Food"> Food </option>
+		  <option value="Study"> Study </option>
+		  <option value="Chill"> Chill </option>
+		  <option value="Party"> Party </option>
+		  <option value="Other"> Other </option>
+		</select>
+	  </div>
+         
+	 <div class="event-input-element drop-down">
+		<label for="event-location-input">Location</label>
+                <select id="event-location-input" name="Location">
+                  <option value="MU"> MU </option>
+                  <option value="Library"> Library </option>
+		  <option value="SEC"> SEC </option>
+		  <option value="KEC"> KEC </option>
+		  <option value="McNary Dinning"> McNary Dinning </option>
+		  <option value="West Dinning"> West Dinning </option>
+		  <option value="Arnold Dinning"> Arnold Dinning </option>
+		  <option value="Bings"> Bings </option>
+		  <option value="IM Feilds"> IM Fields </option>
+		  <option value="Dixon"> Dixon </option>
+		  <option value="Reeser"> Reeser </option>
+		  <option value="Gill"> Gill </option>
+                </select>
+          </div>
+ 
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="modal-cancel-button">Cancel</button>
+          <button type="button" class="modal-accept-button">Add Event</button>
+        </div>
+
+      </div>
+    </div>
+  {{/if}}
+
