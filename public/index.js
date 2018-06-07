@@ -106,6 +106,15 @@ function checkValidPost(){
 }
 
 function sidebutton(){
+	var clear = document.getElementsByClassName("side-bar-button");
+	var string = "active";
+	for(var i=0; i<6; i++){
+		if(clear[i].classList.contains(string)){
+			clear[i].classList.remove("active");
+		}
+	}
+	console.log(this);
+	this.classList.add("active");
 	alert("fuk u");
 }
 
@@ -116,15 +125,21 @@ var study = document.getElementById("study-button");
 var chill = document.getElementById("chill-button");
 var party = document.getElementById("party-button");
 var other = document.getElementById("other-button");
-sport.addEventListener("click",sidebutton);
+//end of filer buttons
 var makeEvent = document.getElementsByClassName("modal-accept-button")[0];
 var postModalButton = document.getElementById("create-event-button");
 var closeModalButton = document.getElementsByClassName("modal-close-button")[0];
-<<<<<<< HEAD
-
-=======
 var editButton = document.getElementsByClassName("edit-icon");
->>>>>>> fcc9e7b05c8a381d64da379628f1fb2eaba68e45
+
+
+
+sport.addEventListener("click",sidebutton);
+food.addEventListener("click",sidebutton);
+study.addEventListener("click",sidebutton);
+chill.addEventListener("click",sidebutton);
+party.addEventListener("click",sidebutton);
+other.addEventListener("click",sidebutton);
+
 
 closeModalButton.addEventListener("click",closeModal);
 postModalButton.addEventListener("click",openModal);
