@@ -1,7 +1,4 @@
-//Currently all the gets and add event work.  Working on testing edit event.
-
-
-
+//Set up mongo and handlebars
 var express = require("express");
 var exphbs = require("express-handlebars");
 var bodyParser = require("body-parser");
@@ -29,6 +26,7 @@ app.use(express.static("public"));
 
 var length = 0;
 
+//Display page of events with dots on map
 app.get('/', function(req, res){
 	let eventDataCollection = db.collection("eventData");
 	eventDataCollection.find({}).toArray(function (err, results) {
@@ -93,7 +91,6 @@ app.get("/eventPage/:eventID", function (req, res, next){
 	let eventDataCollection = db.collection("eventData");
 	let ID = parseInt(req.params.eventID, 10);
 	eventDataCollection.find({eventID: ID}).toArray(function (err, results){
-		console.log(results.length);
 		if (err)
 		{
 			res.status(500).send("Error fetching event");
@@ -116,10 +113,12 @@ app.get("/wipe/confirm", function (req, res, next){
 	console.log("Database wiped.");
 });
 
+//404 LK's lover not found
 app.get('*', function(req,res){
 	res.status(404).render("404", {numEvents: 0});
 });
 
+//Add a new event. 
 app.post("/addEvent", function (req, res, next){
 	if (req.body)
 	{
@@ -158,8 +157,8 @@ app.post("/addEvent", function (req, res, next){
 	}
 });
 
-//Needs everything in body all six.
-app.post("editEvent/:eventID", function(req, res, next) {
+//Edit an exsisting event.
+app.post("/editEvent/:eventID", function(req, res, next) {
 	if (req.body)
 	{
 		let eventDataCollection = db.collection("eventData");
@@ -177,22 +176,18 @@ app.post("editEvent/:eventID", function(req, res, next) {
 			}
 			eventDataCollection.updateOne(
 				{ eventID: id },
-				{ $push: {  
+				{ $set:{   
 					eventTitle: req.body.eventTitle,
 					eventDescription: req.body.eventDescription,
 					eventLocation: req.body.eventLocation,
 					eventTime: req.body.eventTime,
 					eventCapacity: req.body.eventCapacity,
-					eventType: req.body.eventType,
+					eventType: req.body.eventType
 				}},
 				function (err, result) {
 					if (err)
 					{
-						res.status(500).send("Error fetching from DB");
-					}
-					else
-					{
-						res.status(200).send("Success");
+						console.log(err);
 					}
 				});
 		});
@@ -204,7 +199,7 @@ app.post("editEvent/:eventID", function(req, res, next) {
 });
 
 //Doesn't need anything in body as of now.
-app.post("goingToEvent/:eventID", function(req, res, next) {
+app.post("/goingToEvent/:eventID", function(req, res, next) {
 	let eventDataCollection = db.collection("eventData");
 	eventDataCollection.find({}).toArray(function (err, results){
 		if (err)
@@ -241,9 +236,6 @@ app.post("goingToEvent/:eventID", function(req, res, next) {
 app.post('*', function(req,res){
 	res.status(404).send("Attempting to POST to unknown path.");
 });
-
-//Add what happens when an event is deleted.
-//Add thing to catch non-exsisting delete requests.
 
 MongoClient.connect(mongoURL, function(err,connection){
 	if (err)
