@@ -21,7 +21,13 @@
 
 var new_event = 1;
 var id = 0;
-
+//**************************Event "DataBase"*********************
+var events = document.getElementsByClassName("in-event");
+var allEvents = [];
+for(var i=0;i<events.length; i++){
+	allEvents.push(events[i]);
+}
+//************************************************
 //Open modal for making new events.
 function openModal(){
 	var backdrop = document.getElementById("modal-backdrop"); //Show backdrop
@@ -200,6 +206,23 @@ function going(event)
 	}
 }
 
+function filter(category){
+	var currNumEvents = document.getElementsByClassName("in-event");
+	var container = document.getElementsByClassName("event-container")[0];
+	var loop = currNumEvents.length;
+	for(var i=0; i<loop;i++){
+		document.getElementsByClassName("in-event")[0].remove();
+	}
+	
+	var name = category.previousSibling.previousSibling.textContent;
+	console.log(allEvents[0].getElementsByClassName("Event-Type")[0].textContent);
+	for(var i=0; i<allEvents.length; i++){
+		console.log("at:",i,"this is the type:",allEvents[i].getElementsByClassName("Event-Type")[0].textContent);		
+		if(allEvents[i].getElementsByClassName("Event-Type")[0].textContent === name){
+			container.appendChild(allEvents[i]);	
+		}	
+	}
+}
 
 function sidebutton(){
 	var clear = document.getElementsByClassName("side-bar-button");
@@ -211,7 +234,7 @@ function sidebutton(){
 	}
 	console.log(this);
 	this.classList.add("active");
-	alert("fuk u");
+	filter(this);
 }
 
 //Filter buttons
@@ -225,7 +248,6 @@ var other = document.getElementById("other-button");
 var makeEvent = document.getElementsByClassName("modal-accept-button")[0];
 var postModalButton = document.getElementById("create-event-button");
 var closeModalButton = document.getElementsByClassName("modal-close-button")[0];
-<<<<<<< HEAD
 var editButton = document.getElementsByClassName("edit-icon");
 
 
@@ -237,11 +259,9 @@ chill.addEventListener("click",sidebutton);
 party.addEventListener("click",sidebutton);
 other.addEventListener("click",sidebutton);
 
-=======
 
 var editButton = document.getElementsByClassName("edit-icon");
 var goingButton = document.getElementsByClassName("go-btn");
->>>>>>> 3842e7930663ed8b79a5500c550d11814fe9b219
 
 closeModalButton.addEventListener("click",closeModal);
 postModalButton.addEventListener("click",openModal);
