@@ -273,6 +273,7 @@ var makeEvent = document.getElementsByClassName("modal-accept-button")[0];
 var postModalButton = document.getElementById("create-event-button");
 var closeModalButton = document.getElementsByClassName("modal-close-button")[0];
 var editButton = document.getElementsByClassName("edit-icon");
+var cancelButton = document.getElementsByClassName("modal-cancel-button")[0];
 
 
 
@@ -286,7 +287,7 @@ clear.addEventListener("click",displayAllEvents);
 
 var editButton = document.getElementsByClassName("edit-icon");
 var goingButton = document.getElementsByClassName("go-btn");
-
+cancelButton.addEventListener("click",closeModal);
 closeModalButton.addEventListener("click",closeModal);
 postModalButton.addEventListener("click",openModal);
 makeEvent.addEventListener("click",checkValidPost);
