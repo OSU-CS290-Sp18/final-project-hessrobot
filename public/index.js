@@ -237,6 +237,23 @@ function sidebutton(){
 	filter(this);
 }
 
+function displayAllEvents(){
+	var container = document.getElementsByClassName("event-container")[0];
+	var loopAll = allEvents.length;
+	var loopCur = document.getElementsByClassName("in-event").length;
+	var clear = document.getElementsByClassName("side-bar-button");
+	for(var i=0; i<6; i++){
+		if(clear[i].classList.contains("active")){
+			clear[i].classList.remove("active");
+		}
+	}
+	for(var i=0; i<loopCur;i++){
+		document.getElementsByClassName("in-event")[0].remove();
+	}
+	for(var i=0; i<loopAll;i++){
+		container.appendChild(allEvents[i]);
+	}
+}	
 //Filter buttons
 var sport = document.getElementById("sports-button");
 var food = document.getElementById("food-button");
@@ -244,6 +261,7 @@ var study = document.getElementById("study-button");
 var chill = document.getElementById("chill-button");
 var party = document.getElementById("party-button");
 var other = document.getElementById("other-button");
+var clear = document.getElementsByClassName("clear")[0];
 //end of filer buttons
 
 //Search Bar 
@@ -264,7 +282,7 @@ study.addEventListener("click",sidebutton);
 chill.addEventListener("click",sidebutton);
 party.addEventListener("click",sidebutton);
 other.addEventListener("click",sidebutton);
-
+clear.addEventListener("click",displayAllEvents);
 
 var editButton = document.getElementsByClassName("edit-icon");
 var goingButton = document.getElementsByClassName("go-btn");
