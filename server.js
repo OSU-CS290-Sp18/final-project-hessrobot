@@ -7,11 +7,11 @@ var MongoClient = require("mongodb").MongoClient;
 var app = express();
 var port = process.env.PORT || 3000;
 
-var mongoHost = process.env.MONGO_HOST;
+var mongoHost = process.env.MONGO_HOST || classmongo.engr.oregonstate.edu;
 var mongoPort = process.env.MONGO_PORT || 27017;
-var mongoUser = process.env.MONGO_USER;
-var mongoPassword = process.env.MONGO_PASSWORD;
-var mongoDBName = process.env.MONGO_DB;
+var mongoUser = process.env.MONGO_USER || cs290_mestasp;
+var mongoPassword = process.env.MONGO_PASSWORD || hessrobot;
+var mongoDBName = process.env.MONGO_DB || cs290_mestasp;
 
 var mongoURL = "mongodb://" + mongoUser + ':' + mongoPassword + '@' + mongoHost + ':' + mongoPort + '/' + mongoDBName;
 
@@ -82,26 +82,6 @@ app.get('/', function(req, res){
 				showMcNary: showMcNary, showWest: showWest, showArnold: showArnold, showBings: showBings, 
 				showIM: showIM, showDixon: showDixon, showReeser: showReeser, showGill: showGill
 			});
-		}
-	});
-});
-
-//Event page currently not set to do anything.  Do we even want to include this?
-app.get("/eventPage/:eventID", function (req, res, next){
-	let eventDataCollection = db.collection("eventData");
-	let ID = parseInt(req.params.eventID, 10);
-	eventDataCollection.find({eventID: ID}).toArray(function (err, results){
-		if (err)
-		{
-			res.status(500).send("Error fetching event");
-		}
-		else if (results.length > 0)
-		{
-			res.status(200).render('eventPage', results[0]);
-		}
-		else
-		{
-			next();
 		}
 	});
 });
