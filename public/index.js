@@ -32,9 +32,9 @@ for(var i=0;i<events.length; i++){
 function openModal(){
 	var backdrop = document.getElementById("modal-backdrop"); //Show backdrop
 	var modal = document.getElementById("create-modal");
-	backdrop.classList.remove("hidden");	
+	backdrop.classList.remove("hidden");
 	modal.classList.remove("hidden");
-	
+
 	var time = document.getElementById("event-time-input"); //Set empty
 	var type = document.getElementById("event-type-input");
 	time.value = '';
@@ -46,8 +46,8 @@ function openModal(){
 function openModalEdit(event){
 	var backdrop = document.getElementById("modal-backdrop"); //Show modal
 	var modal = document.getElementById("create-modal");
-	backdrop.classList.remove("hidden");	
-	modal.classList.remove("hidden");	
+	backdrop.classList.remove("hidden");
+	modal.classList.remove("hidden");
 
 	var modal = document.getElementById("create-modal"); //Get to the inputs
 	var title = document.getElementById("event-title-input");
@@ -63,14 +63,14 @@ function openModalEdit(event){
 	let contentNode = titleNode.nextSibling.nextSibling;
 	let parentNode = targetNode.parentNode;
 	let testNode = parentNode.previousSibling.previousSibling;
-	
+
 	let locationNode = contentNode.querySelector(".location-input"); //Get to the current value
 	let timeNode = contentNode.querySelector(".Time-input");
 	let capacityNode = contentNode.querySelector(".capacity-input");
 	let typeNode = contentNode.querySelector(".Event-Type");
 	let descriptionNode = contentNode.querySelector(".event-text");
 	let idNode = contentNode.querySelector(".id");
-	
+
 	title.value = titleNode.textContent; //Make starting input value the current value
 	description.value = descriptionNode.textContent;
 	locations.value = locationNode.textContent;
@@ -97,8 +97,8 @@ function closeModal(){
 	locations.value = '';
 	time.value = '';
 	type.value = '';
-	backdrop.classList.add("hidden");	
-	modal.classList.add("hidden");	
+	backdrop.classList.add("hidden");
+	modal.classList.add("hidden");
 }
 
 function checkValidPost(){
@@ -121,7 +121,7 @@ function checkValidPost(){
 			let postRequest = new XMLHttpRequest(); //We gonna use this thing to make and send post request to server.
 			let postURL = "/addEvent"; //This the URL the server needs to make a new event.
 			postRequest.open("POST", postURL); //Open the request so we can put shit in it.
-	
+
 			let eventObject = { //Make the object to send
 				eventTitle: title.value,
 				eventDescription: description.value,
@@ -130,11 +130,11 @@ function checkValidPost(){
 				eventCapacity: capacity.value,
 				eventTime: time.value
 			};
-	
+
 			let requestBody = JSON.stringify(eventObject); //Change formatting
 			postRequest.setRequestHeader('Content-Type', 'application/json'); //Write header of request object
 			postRequest.send(requestBody); //SEND IT!
-			
+
 			/*
  * 			TODO
  * 			ADD EVENT TO THE DOM
@@ -150,7 +150,7 @@ function checkValidPost(){
 			let postURL = "/editEvent/" + id.toString(); //This the URL the server needs to make a new event.
 			console.log(postURL);
 			postRequest.open("POST", postURL); //Open the request so we can put shit in it.
-			
+
 			let eventObject = { //Make the object to send
 				eventTitle: title.value,
 				eventDescription: description.value,
@@ -159,7 +159,7 @@ function checkValidPost(){
 				eventCapacity: capacity.value,
 				eventTime: time.value
 			};
-			
+
 			let requestBody = JSON.stringify(eventObject); //Change formatting
 			postRequest.setRequestHeader('Content-Type', 'application/json'); //Write header of request object
 			postRequest.send(requestBody); //SEND IT!
@@ -173,7 +173,7 @@ function going(event)
 {
 	let targetNode = event.currentTarget; //Get some nodes
 	targetNode.classList.add("hidden");
-	
+
 	let contentNode = targetNode.previousSibling.previousSibling;
 	let capacityNode = contentNode.querySelector(".capacity-input");
 	let idNode = contentNode.querySelector(".id");
@@ -182,7 +182,7 @@ function going(event)
 	id = idNode.textContent; //Set ID so we know which object were changing
 	let going = parseInt(goingNode.textContent,10);
 	let cap = parseInt(capacityNode.textContent,10);
-	
+
 	if (going === cap)
 	{
 		alert("Event is at maximum capacity");
@@ -195,11 +195,11 @@ function going(event)
 			let postURL = "/goingToEvent/" + id.toString(); //This the URL the server needs to make a new event.
 			console.log(postURL);
 			postRequest.open("POST", postURL); //Open the request so we can put shit in it.
-			
+
 			let eventObject = { //Make the object to send
 				eventGoing: newGoing
 			};
-			
+
 			let requestBody = JSON.stringify(eventObject); //Change formatting
 			postRequest.setRequestHeader('Content-Type', 'application/json'); //Write header of request object
 			postRequest.send(requestBody); //SEND IT!
@@ -213,6 +213,7 @@ function display(sideWord,mapWord){
 	for(var i=0; i<loop;i++){
 		document.getElementsByClassName("in-event")[0].remove();
 	}
+<<<<<<< HEAD
 	
 	for(var i=0; i<allEvents.length; i++){
 		var sideFilterWord = allEvents[i].getElementsByClassName("Event-Type")[0].textContent;
@@ -242,6 +243,16 @@ function filter(){
 			mapWord = map[i].classList[1];
 			console.log("IN SECOND LOOP: ", mapWord);
 		}
+=======
+
+	var name = category.previousSibling.previousSibling.textContent;
+	console.log(allEvents[0].getElementsByClassName("Event-Type")[0].textContent);
+	for(var i=0; i<allEvents.length; i++){
+		console.log("at:",i,"this is the type:",allEvents[i].getElementsByClassName("Event-Type")[0].textContent);
+		if(allEvents[i].getElementsByClassName("Event-Type")[0].textContent === name){
+			container.appendChild(allEvents[i]);
+		}
+>>>>>>> 929df65385dc5ba866b45b198ef4879521913f31
 	}
 	display(sideWord,mapWord);
 }
@@ -291,7 +302,7 @@ function displayAllEvents(){
 	for(var i=0; i<loopAll;i++){
 		container.appendChild(allEvents[i]);
 	}
-}	
+}
 //Filter buttons
 var sport = document.getElementById("sports-button");
 var food = document.getElementById("food-button");
@@ -302,13 +313,20 @@ var other = document.getElementById("other-button");
 var clear = document.getElementsByClassName("clear")[0];
 //end of filer buttons
 
-//Search Bar 
+//Search Bar
 var searchBar = document.getElementById("navbar-search-input");
+<<<<<<< HEAD
 	
+=======
+//function searchFilter(){
+
+//searchBar.addEventListener('input',);
+>>>>>>> 929df65385dc5ba866b45b198ef4879521913f31
 var makeEvent = document.getElementsByClassName("modal-accept-button")[0];
 var postModalButton = document.getElementById("create-event-button");
 var closeModalButton = document.getElementsByClassName("modal-close-button")[0];
 var editButton = document.getElementsByClassName("edit-icon");
+var cancelButton = document.getElementsByClassName("modal-cancel-button")[0];
 
 //map buttons
 var gill = document.getElementsByClassName("marker");
@@ -327,7 +345,7 @@ clear.addEventListener("click",displayAllEvents);
 
 var editButton = document.getElementsByClassName("edit-icon");
 var goingButton = document.getElementsByClassName("go-btn");
-
+cancelButton.addEventListener("click",closeModal);
 closeModalButton.addEventListener("click",closeModal);
 postModalButton.addEventListener("click",openModal);
 makeEvent.addEventListener("click",checkValidPost);
@@ -338,3 +356,53 @@ for (let i = 0; i < editButton.length; i++)
 
 for (let i = 0; i < goingButton.length; i++)
 	goingButton[i].addEventListener("click",going);
+
+
+
+	window.onload = function () {
+	  var eventsCash = [];
+	  var text = document.getElementsByClassName("in-event");
+	  var tmp = document.getElementsByClassName("event-container");
+	  var evContainer = tmp[0];
+	  tmp = null;
+
+	  var inputs = document.getElementsByTagName('input');
+
+	  var whiteList = [];
+	  eventsCash.length = 0;
+	  var change = '';
+
+	  for (i = 0; i < inputs.length; i++) {
+	      inputs[i].onkeyup = function() {
+
+
+	      p1 = document.getElementById("navbar-search-input").value;
+	      whiteList.length = 0;
+
+	      for (var i = 0; i < eventsCash.length; i++) {
+	        evContainer.appendChild(eventsCash[i]);
+	        console.log(eventsCash[i]);
+	      }
+	      eventsCash.length = 0;//Clearing the cash
+
+	      allEvents = document.getElementsByClassName("in-event");// get all the twits
+
+	      for(i = 0; i < allEvents.length; i++){// Fixing the whitelist
+	        if(allEvents[i].textContent.includes(p1)){// See if the string is included in the twit textContent
+	          //console.log("Contains: ",p1," ",twits[i]);// Log all members that have the input
+	          whiteList.push(allEvents[i]);// Then add them to the whiteList
+	        }
+	      }
+
+
+	      while(allEvents.length > whiteList.length){// Go through all the twits
+	        for(i = 0; i < allEvents.length; i++){// Go through all the twits
+	          if(!whiteList.includes(allEvents[i])){// Set their visability based on weather or not they are on the whiteList
+	            eventsCash.push(allEvents[i]);
+	            evContainer.removeChild(allEvents[i]);
+	          }
+	        }
+	      }
+	    };
+	  }
+	};
