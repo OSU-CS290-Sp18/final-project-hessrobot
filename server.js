@@ -60,7 +60,7 @@ app.get('/', function(req, res){
 					showSEC = 1;
 				if (results[i].eventLocation == "KEC")
 					showKEC = 1;
-				if (results[i].eventLocation == "Mcnary Dinning")
+				if (results[i].eventLocation == "McNary Dinning")
 					showMcNary = 1;
 				if (results[i].eventLocation == "West Dinning")
 					showWest = 1;
@@ -78,8 +78,8 @@ app.get('/', function(req, res){
 					showGill = 1;
 			}
 			res.status(200).render('homePage', {events: results, numEvents: num, showCreateEvent: 1,
-				showMU: showMU, showLibrary: showLibrary, showSEC: showSEC, showKEC: showKEC, 
-				showMcNary: showMcNary, showWest: showWest, showArnold: showArnold, showBings: showBings, 
+				showMU: showMU, showLibrary: showLibrary, showSEC: showSEC, showKEC: showKEC,
+				showMcNary: showMcNary, showWest: showWest, showArnold: showArnold, showBings: showBings,
 				showIM: showIM, showDixon: showDixon, showReeser: showReeser, showGill: showGill
 			});
 		}
@@ -91,7 +91,7 @@ app.get('*', function(req,res){
 	res.status(404).render("404", {numEvents: 0});
 });
 
-//Add a new event. 
+//Add a new event.
 app.post("/addEvent", function (req, res, next){
 	if (req.body)
 	{
@@ -149,7 +149,7 @@ app.post("/editEvent/:eventID", function(req, res, next) {
 			}
 			eventDataCollection.updateOne(
 				{ eventID: id },
-				{ $set:{   
+				{ $set:{
 					eventTitle: req.body.eventTitle,
 					eventDescription: req.body.eventDescription,
 					eventLocation: req.body.eventLocation,
@@ -186,16 +186,16 @@ app.post("/goingToEvent/:eventID", function(req, res, next) {
 		{
 			next();
 		}
-		let newGoing = req.body.eventGoing; 
+		let newGoing = req.body.eventGoing;
 		eventDataCollection.updateOne(
 			{ eventID: id },
-			{ $set: {  
+			{ $set: {
 				eventGoing: newGoing,
 			}},
 			function (err, result) {
 				if (err)
 				{
-					console.log(err);                                 
+					console.log(err);
 				}
 			});
 	});
