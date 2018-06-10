@@ -206,7 +206,7 @@ function going(event)
 	}
 }
 
-function filter(category){
+function display(sideWord,mapWord){
 	var currNumEvents = document.getElementsByClassName("in-event");
 	var container = document.getElementsByClassName("event-container")[0];
 	var loop = currNumEvents.length;
@@ -214,14 +214,47 @@ function filter(category){
 		document.getElementsByClassName("in-event")[0].remove();
 	}
 	
-	var name = category.previousSibling.previousSibling.textContent;
-	console.log(allEvents[0].getElementsByClassName("Event-Type")[0].textContent);
 	for(var i=0; i<allEvents.length; i++){
-		console.log("at:",i,"this is the type:",allEvents[i].getElementsByClassName("Event-Type")[0].textContent);		
-		if(allEvents[i].getElementsByClassName("Event-Type")[0].textContent === name){
-			container.appendChild(allEvents[i]);	
-		}	
+		var sideFilterWord = allEvents[i].getElementsByClassName("Event-Type")[0].textContent;
+		mapFilterWord = allEvents[i].getElementsByClassName("location-input")[0].textContent;
+		console.log("comparing",sideFilterWord, "and", sideWord);
+		console.log("comparing",mapFilterWord, "and", mapWord);
+		if(sideFilterWord.indexOf(sideWord) >= 0 && mapFilterWord.indexOf(mapWord) >= 0){
+			container.appendChild(allEvents[i]);
+		}
 	}
+}
+
+function filter(){
+	var side = document.getElementsByClassName("side-item");
+	var map = document.getElementsByClassName("marker");
+	var sideWord = "";
+	var mapWord = "";
+	for(var i=0; i<6; i++){
+		console.log(side[i].nextSibling.nextSibling.classList);
+		if(side[i].nextSibling.nextSibling.classList.contains("active")){
+			sideWord = side[i].textContent;
+			console.log("FIRST LOOP:", sideWord);
+		}
+	}
+	for(var i=0; i<map.length; i++){
+		if(map[i].classList.contains("active") && !map[i].classList.contains("disable")){
+			mapWord = map[i].classList[1];
+			console.log("IN SECOND LOOP: ", mapWord);
+		}
+	}
+	display(sideWord,mapWord);
+}
+
+function mapbutton(){
+	var buttons = document.getElementsByClassName("marker");
+	for(var i=0; i<buttons.length; i++){
+		if(buttons[i].classList.contains("active")){
+			buttons[i].classList.remove("active");
+		}
+	}
+	this.classList.add("active");
+	filter();	
 }
 
 function sidebutton(){
@@ -232,9 +265,8 @@ function sidebutton(){
 			clear[i].classList.remove("active");
 		}
 	}
-	console.log(this);
 	this.classList.add("active");
-	filter(this);
+	filter();
 }
 
 function displayAllEvents(){
@@ -242,6 +274,12 @@ function displayAllEvents(){
 	var loopAll = allEvents.length;
 	var loopCur = document.getElementsByClassName("in-event").length;
 	var clear = document.getElementsByClassName("side-bar-button");
+	var mapButtons = document.getElementsByClassName("marker");
+	for(var i=0; i<mapButtons.length; i++){
+		if(mapButtons[i].classList.contains("active")){
+			mapButtons[i].classList.remove("active");
+		}
+	}
 	for(var i=0; i<6; i++){
 		if(clear[i].classList.contains("active")){
 			clear[i].classList.remove("active");
@@ -266,15 +304,18 @@ var clear = document.getElementsByClassName("clear")[0];
 
 //Search Bar 
 var searchBar = document.getElementById("navbar-search-input");
-//function searchFilter(){
 	
-//searchBar.addEventListener('input',);
 var makeEvent = document.getElementsByClassName("modal-accept-button")[0];
 var postModalButton = document.getElementById("create-event-button");
 var closeModalButton = document.getElementsByClassName("modal-close-button")[0];
 var editButton = document.getElementsByClassName("edit-icon");
 
+//map buttons
+var gill = document.getElementsByClassName("marker");
 
+for(var i=0;i<gill.length;i++){
+	gill[i].addEventListener("click", mapbutton)
+}	
 
 sport.addEventListener("click",sidebutton);
 food.addEventListener("click",sidebutton);
