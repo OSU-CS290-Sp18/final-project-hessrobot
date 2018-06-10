@@ -213,7 +213,6 @@ function display(sideWord,mapWord){
 	for(var i=0; i<loop;i++){
 		document.getElementsByClassName("in-event")[0].remove();
 	}
-<<<<<<< HEAD
 	
 	for(var i=0; i<allEvents.length; i++){
 		var sideFilterWord = allEvents[i].getElementsByClassName("Event-Type")[0].textContent;
@@ -243,16 +242,7 @@ function filter(){
 			mapWord = map[i].classList[1];
 			console.log("IN SECOND LOOP: ", mapWord);
 		}
-=======
 
-	var name = category.previousSibling.previousSibling.textContent;
-	console.log(allEvents[0].getElementsByClassName("Event-Type")[0].textContent);
-	for(var i=0; i<allEvents.length; i++){
-		console.log("at:",i,"this is the type:",allEvents[i].getElementsByClassName("Event-Type")[0].textContent);
-		if(allEvents[i].getElementsByClassName("Event-Type")[0].textContent === name){
-			container.appendChild(allEvents[i]);
-		}
->>>>>>> 929df65385dc5ba866b45b198ef4879521913f31
 	}
 	display(sideWord,mapWord);
 }
@@ -315,13 +305,9 @@ var clear = document.getElementsByClassName("clear")[0];
 
 //Search Bar
 var searchBar = document.getElementById("navbar-search-input");
-<<<<<<< HEAD
 	
-=======
 //function searchFilter(){
 
-//searchBar.addEventListener('input',);
->>>>>>> 929df65385dc5ba866b45b198ef4879521913f31
 var makeEvent = document.getElementsByClassName("modal-accept-button")[0];
 var postModalButton = document.getElementById("create-event-button");
 var closeModalButton = document.getElementsByClassName("modal-close-button")[0];
