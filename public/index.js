@@ -3,8 +3,8 @@
 //TODO List (For Jason and LK)
 /*
  * Make the side bar turn green and filter when clicked.  One at a time.
- * Location dots too same as this^
- * Make search bar work on the top (Make sure that if filters are on it deletes the ones that don't fit the filter also.)
+* Location dots too same as this^
+* Make search bar work on the top (Make sure that if filters are on it deletes the ones that don't fit the filter also.)
  * Add event to the DOM when it is created.
  * Add Coordinates for IM Field (ask Reese).
  * Error Check and make sure all dots have correct coordinates set up.
@@ -213,7 +213,7 @@ function display(sideWord,mapWord){
 	for(var i=0; i<loop;i++){
 		document.getElementsByClassName("in-event")[0].remove();
 	}
-	
+
 	for(var i=0; i<allEvents.length; i++){
 		var sideFilterWord = allEvents[i].getElementsByClassName("Event-Type")[0].textContent;
 		mapFilterWord = allEvents[i].getElementsByClassName("location-input")[0].textContent;
@@ -255,7 +255,7 @@ function mapbutton(){
 		}
 	}
 	this.classList.add("active");
-	filter();	
+	filter();
 }
 
 function sidebutton(){
@@ -305,7 +305,7 @@ var clear = document.getElementsByClassName("clear")[0];
 
 //Search Bar
 var searchBar = document.getElementById("navbar-search-input");
-	
+
 //function searchFilter(){
 
 var makeEvent = document.getElementsByClassName("modal-accept-button")[0];
@@ -319,7 +319,7 @@ var gill = document.getElementsByClassName("marker");
 
 for(var i=0;i<gill.length;i++){
 	gill[i].addEventListener("click", mapbutton)
-}	
+}
 
 sport.addEventListener("click",sidebutton);
 food.addEventListener("click",sidebutton);
@@ -328,6 +328,8 @@ chill.addEventListener("click",sidebutton);
 party.addEventListener("click",sidebutton);
 other.addEventListener("click",sidebutton);
 clear.addEventListener("click",displayAllEvents);
+//clear.addEventListener(document.location.reload());
+
 
 var editButton = document.getElementsByClassName("edit-icon");
 var goingButton = document.getElementsByClassName("go-btn");
@@ -344,7 +346,7 @@ for (let i = 0; i < goingButton.length; i++)
 	goingButton[i].addEventListener("click",going);
 
 
-
+// Search Bar
 	window.onload = function () {
 	  var eventsCash = [];
 	  var text = document.getElementsByClassName("in-event");
@@ -354,15 +356,22 @@ for (let i = 0; i < goingButton.length; i++)
 
 	  var inputs = document.getElementsByTagName('input');
 
+		var clear = document.getElementsByClassName("clear")[0];
+		clear.addEventListener("click",displayAllEvents);
+
 	  var whiteList = [];
 	  eventsCash.length = 0;
 	  var change = '';
-
+		if (eventsCash.length == 0) {
+				displayAllEvents();
+		}
 	  for (i = 0; i < inputs.length; i++) {
 	      inputs[i].onkeyup = function() {
 
 
 	      p1 = document.getElementById("navbar-search-input").value;
+
+
 	      whiteList.length = 0;
 
 	      for (var i = 0; i < eventsCash.length; i++) {
@@ -381,9 +390,9 @@ for (let i = 0; i < goingButton.length; i++)
 	      }
 
 
-	      while(allEvents.length > whiteList.length){// Go through all the twits
-	        for(i = 0; i < allEvents.length; i++){// Go through all the twits
-	          if(!whiteList.includes(allEvents[i])){// Set their visability based on weather or not they are on the whiteList
+	      while(allEvents.length > whiteList.length){
+	        for(i = 0; i < allEvents.length; i++){
+	          if(!whiteList.includes(allEvents[i])){
 	            eventsCash.push(allEvents[i]);
 	            evContainer.removeChild(allEvents[i]);
 	          }
