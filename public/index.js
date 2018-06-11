@@ -175,7 +175,7 @@ function checkValidPost(){
 			let requestBody = JSON.stringify(eventObject); //Change formatting
 			postRequest.setRequestHeader('Content-Type', 'application/json'); //Write header of request object
 			postRequest.send(requestBody); //SEND IT!
-		
+
 			var eventObjectClient = {
 				eventTitle: title.value,
 				eventDescription: description.value,
@@ -186,7 +186,7 @@ function checkValidPost(){
 				eventGoing: 1,
 				eventID: allEvents.length
 			};
-	
+
 			var eventHTML = Handlebars.templates.eventCardTemplate(eventObjectClient);
 			var num = events.length;
 			var container = document.getElementsByClassName("event-container")[0];
@@ -245,7 +245,7 @@ function checkValidPost(){
 			let requestBody = JSON.stringify(eventObject); //Change formatting
 			postRequest.setRequestHeader('Content-Type', 'application/json'); //Write header of request object
 			postRequest.send(requestBody); //SEND IT!
-		
+
 			console.log("HEHEHEHAHAHA", allEvents[0].getElementsByClassName("id")[0].textContent,id);
 			console.log(time.value);
 			for(var i=0; i<allEvents.length;i++){
@@ -332,6 +332,8 @@ function displayAllEvents(){
 	var loopCur = document.getElementsByClassName("in-event").length;
 	var clear = document.getElementsByClassName("side-bar-button");
 	var mapButtons = document.getElementsByClassName("marker");
+	document.getElementById("navbar-search-input").value = null;
+
 	for(var i=0; i<mapButtons.length; i++){
 		if(mapButtons[i].classList.contains("active")){
 			mapButtons[i].classList.remove("active");
@@ -346,7 +348,8 @@ function displayAllEvents(){
 		document.getElementsByClassName("in-event")[0].remove();
 	}
 	for(var i=0; i<loopAll;i++){
-		container.appendChild(allEvents[i]);
+		console.log(typeof(allEvents[i]))
+		container.appendChild(Object(allEvents[i]));
 	}
 }
 //Filter buttons
@@ -383,7 +386,10 @@ study.addEventListener("click",sidebutton);
 chill.addEventListener("click",sidebutton);
 party.addEventListener("click",sidebutton);
 other.addEventListener("click",sidebutton);
-clear.addEventListener("click",displayAllEvents);
+clear.addEventListener("click",function(){
+	window.location.reload();
+});
+
 //clear.addEventListener(document.location.reload());
 
 
@@ -412,19 +418,19 @@ for (let i = 0; i < goingButton.length; i++)
 
 	  var inputs = document.getElementsByTagName('input');
 
-		var clear = document.getElementsByClassName("clear")[0];
-		clear.addEventListener("click",displayAllEvents);
+		//var clear = document.getElementsByClassName("clear")[0];
+		//clear.addEventListener("click",displayAllEvents);
 
 	  var whiteList = [];
 	  eventsCash.length = 0;
 	  var change = '';
-		if (eventsCash.length == 0) {
-				displayAllEvents();
-		}
+
+
 	  for (i = 0; i < inputs.length; i++) {
 	      inputs[i].onkeyup = function() {
 
 
+				console.log(eventsCash);
 	      p1 = document.getElementById("navbar-search-input").value;
 
 
@@ -434,14 +440,14 @@ for (let i = 0; i < goingButton.length; i++)
 	        evContainer.appendChild(eventsCash[i]);
 	        console.log(eventsCash[i]);
 	      }
-	      eventsCash.length = 0;//Clearing the cash
+	      eventsCash.length = 0;
 
-	      allEvents = document.getElementsByClassName("in-event");// get all the twits
+	      allEvents = document.getElementsByClassName("in-event");
 
-	      for(i = 0; i < allEvents.length; i++){// Fixing the whitelist
-	        if(allEvents[i].textContent.includes(p1)){// See if the string is included in the twit textContent
-	          //console.log("Contains: ",p1," ",twits[i]);// Log all members that have the input
-	          whiteList.push(allEvents[i]);// Then add them to the whiteList
+	      for(i = 0; i < allEvents.length; i++){
+	        if(allEvents[i].textContent.includes(p1)){
+
+	          whiteList.push(allEvents[i]);
 	        }
 	      }
 
@@ -452,8 +458,15 @@ for (let i = 0; i < goingButton.length; i++)
 	            eventsCash.push(allEvents[i]);
 	            evContainer.removeChild(allEvents[i]);
 	          }
+
 	        }
 	      }
+				/*clear.addEventListener("click",function(){
+					for(i = 0; i < whiteList.length; i++){
+						allEvents.push(whiteList[i]);
+					}
+					displayAllEvents();
+				});*/
 	    };
 	  }
 	};
