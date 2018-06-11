@@ -260,6 +260,7 @@ function display(sideWord,mapWord){
 	}
 
 	for(var i=0; i<allEvents.length; i++){
+		console.log(allEvents.length);
 		var sideFilterWord = allEvents[i].getElementsByClassName("Event-Type")[0].textContent;
 		mapFilterWord = allEvents[i].getElementsByClassName("location-input")[0].textContent;
 		console.log("comparing",sideFilterWord, "and", sideWord);
@@ -290,7 +291,9 @@ function filter(){
 
 	}
 	display(sideWord,mapWord);
+
 }
+
 
 function mapbutton(){
 	var buttons = document.getElementsByClassName("marker");
@@ -338,7 +341,7 @@ function displayAllEvents(){
 	}
 	for(var i=0; i<loopAll;i++){
 		console.log(typeof(allEvents[i]))
-		container.appendChild(Object(allEvents[i]));
+		container.appendChild((allEvents[i]));
 	}
 }
 //Filter buttons
@@ -397,6 +400,9 @@ for (let i = 0; i < goingButton.length; i++)
 	goingButton[i].addEventListener("click",going);
 
 
+
+
+
 // Search Bar
 	window.onload = function () {
 	  var eventsCash = [];
@@ -450,12 +456,12 @@ for (let i = 0; i < goingButton.length; i++)
 
 	        }
 	      }
-				/*clear.addEventListener("click",function(){
-					for(i = 0; i < whiteList.length; i++){
-						allEvents.push(whiteList[i]);
-					}
-					displayAllEvents();
-				});*/
+
+					//for(i = 0; i < whiteList.length; i++){
+						//allEvents.push(whiteList[i]);
+				//	}
+					//displayAllEvents();
+
 	    };
 	  }
 	};
