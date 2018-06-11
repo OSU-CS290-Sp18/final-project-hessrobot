@@ -151,6 +151,22 @@ function mapbutton(){
 	filter();
 }
 
+function checkMapLocations(){
+	var map = document.getElementsByClassName("marker");
+	var safe = 0;
+	for(var i=0; i<map.length; i++){
+		for(var j=0; j<events.length; j++){
+			if(map[i].classList[1] == events[j].getElementsByClassName("location-input")[0].value){
+				safe = 1;
+			}
+		}
+		if(!safe){
+			map[i].remove();
+		}
+		safe = 0;
+	}
+}
+		
 
 function checkValidPost(){
 	var title = document.getElementById("event-title-input");
@@ -281,6 +297,7 @@ function checkValidPost(){
 		}
 			
 		closeModal();
+		checkMapLocations();
 	}
 }
 
