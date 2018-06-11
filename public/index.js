@@ -140,6 +140,18 @@ function filter(){
 	display(sideWord,mapWord);
 }
 
+function mapbutton(){
+	var buttons = document.getElementsByClassName("marker");
+	for(var i=0; i<buttons.length; i++){
+		if(buttons[i].classList.contains("active")){
+			buttons[i].classList.remove("active");
+		}
+	}
+	this.classList.add("active");
+	filter();
+}
+
+
 function checkValidPost(){
 	var title = document.getElementById("event-title-input");
 	var description = document.getElementById("event-description-input");
@@ -190,6 +202,7 @@ function checkValidPost(){
 			var eventHTML = Handlebars.templates.eventCardTemplate(eventObjectClient);
 			var num = events.length;
 			var container = document.getElementsByClassName("event-container")[0];
+			var makeNew = 0;
 			container.insertAdjacentHTML("beforeend",eventHTML);
 			allEvents.push(events[num]);
 
@@ -198,15 +211,20 @@ function checkValidPost(){
 				//do nothing
 				}
 				else{
+					makeNew = 1;
+				}
+			}
+			
+			if(makeNew){
 					var mapContainer = document.getElementsByClassName("in-events")[0];
 					var addClass = locations.value;
 					var loc = document.createElement("div");
 					loc.classList.add("marker");
 					loc.classList.add(addClass);
 					mapContainer.appendChild(loc);
-					loc.addEventListener("click",mapButton);
-				}
+					loc.addEventListener("click",mapbutton);
 			}
+			
 			
 			console.log(locations.value);	
 			console.log("===================")
@@ -303,16 +321,6 @@ function going(event)
 	}
 }
 
-function mapbutton(){
-	var buttons = document.getElementsByClassName("marker");
-	for(var i=0; i<buttons.length; i++){
-		if(buttons[i].classList.contains("active")){
-			buttons[i].classList.remove("active");
-		}
-	}
-	this.classList.add("active");
-	filter();
-}
 
 function sidebutton(){
 	var clear = document.getElementsByClassName("side-bar-button");
