@@ -1,4 +1,4 @@
-/* Ew CSS is gross*/ 
+/* Ew CSS is gross*/
 body {
   font-family: Helvetica, sans-serif;
   margin: 0;
@@ -107,13 +107,13 @@ a {
   background-color:#afafaf
 }
 .side-bar-button.active{
-background-color:#90FB89;  
+background-color:#90FB89;
 }
 
 .event-container {
   margin: 50px 10%;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   flex:5;
 }
 @media screen and (min-width:1000px){
@@ -162,7 +162,7 @@ margin-left: 20px;
 }
 
 .marker:hover{
-  background-color:#00ACEE; 
+  background-color:#00ACEE;
 }
 
 .event {
@@ -233,7 +233,7 @@ margin-left: 20px;
   height:40px;
   width:40px;
   color:black;
-  background-color:#00ACEE; 
+  background-color:#00ACEE;
   border:none;
   border-radius:25%;
 }
@@ -243,7 +243,7 @@ margin-left: 20px;
 #create-event-button:focus{
   height:38px;
   width:38px;
-  border: 2px solid #afafaf 
+  border: 2px solid #afafaf
 }
 
 #modal-backdrop {
@@ -398,7 +398,7 @@ right: 202px;
 bottom: 320px;
 z-index:2000;
 }
-.marker.library{
+.marker.Library{
 position:absolute;
 width: 8px;
 height:8px;
@@ -506,11 +506,11 @@ right: 40.75%;
 bottom: 71%;
 z-index:2000;
 }
-.marker.library{
+.marker.Library{
 position:absolute;
 width: 16px;
 height:16px;
-right: 36.5%;
+right: 100.5%;
 bottom: 72%;
 z-index:2000;
 }
@@ -590,4 +590,3 @@ z-index:2000;
 .hidden{
 display:none;
 }
-
