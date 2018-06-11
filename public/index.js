@@ -98,6 +98,47 @@ function closeModal(){
 	backdrop.classList.add("hidden");
 	modal.classList.add("hidden");
 }
+//button functionality
+function display(sideWord,mapWord){
+	var currNumEvents = document.getElementsByClassName("in-event");
+	var container = document.getElementsByClassName("event-container")[0];
+	var loop = currNumEvents.length;
+	for(var i=0; i<loop;i++){
+		document.getElementsByClassName("in-event")[0].remove();
+	}
+
+	for(var i=0; i<allEvents.length; i++){
+		var sideFilterWord = allEvents[i].getElementsByClassName("Event-Type")[0].textContent;
+		mapFilterWord = allEvents[i].getElementsByClassName("location-input")[0].textContent;
+		console.log("comparing",sideFilterWord, "and", sideWord);
+		console.log("comparing",mapFilterWord, "and", mapWord);
+		if(sideFilterWord.indexOf(sideWord) >= 0 && mapFilterWord.indexOf(mapWord) >= 0){
+			container.appendChild(allEvents[i]);
+		}
+	}
+}
+
+function filter(){
+	var side = document.getElementsByClassName("side-item");
+	var map = document.getElementsByClassName("marker");
+	var sideWord = "";
+	var mapWord = "";
+	for(var i=0; i<6; i++){
+		console.log(side[i].nextSibling.nextSibling.classList);
+		if(side[i].nextSibling.nextSibling.classList.contains("active")){
+			sideWord = side[i].textContent;
+			console.log("FIRST LOOP:", sideWord);
+		}
+	}
+	for(var i=0; i<map.length; i++){
+		if(map[i].classList.contains("active") && !map[i].classList.contains("disable")){
+			mapWord = map[i].classList[1];
+			console.log("IN SECOND LOOP: ", mapWord);
+		}
+
+	}
+	display(sideWord,mapWord);
+}
 
 function checkValidPost(){
 	var title = document.getElementById("event-title-input");
@@ -116,6 +157,8 @@ function checkValidPost(){
 	else{
 		if (new_event == 1)
 		{
+			var mapLocation = document.getElementsByClassName("marker");
+			console.log(mapLocation);
 			let postRequest = new XMLHttpRequest(); //We gonna use this thing to make and send post request to server.
 			let postURL = "/addEvent"; //This the URL the server needs to make a new event.
 			postRequest.open("POST", postURL); //Open the request so we can put shit in it.
@@ -149,6 +192,23 @@ function checkValidPost(){
 			var container = document.getElementsByClassName("event-container")[0];
 			container.insertAdjacentHTML("beforeend",eventHTML);
 			allEvents.push(events[num]);
+
+			for(var i=0; i<mapLocation.length; i++){
+				if(mapLocation[i].classList.contains(locations.value)){
+				//do nothing
+				}
+				else{
+					var mapContainer = document.getElementsByClassName("in-events")[0];
+					var addClass = locations.value;
+					var loc = document.createElement("div");
+					loc.classList.add("marker");
+					loc.classList.add(addClass);
+					mapContainer.appendChild(loc);
+					loc.addEventListener("click",mapButton);
+				}
+			}
+			
+			console.log(locations.value);	
 			console.log("===================")
 			console.log("old index:", num, "new index:", events.length);
 			console.log(allEvents);
@@ -197,19 +257,11 @@ function checkValidPost(){
 					allEvents[i].getElementsByClassName("location-input")[0].textContent=locations.value;
 					allEvents[i].getElementsByClassName("Time-input")[0].textContent=time.value;
 					allEvents[i].getElementsByClassName("capacity-input")[0].textContent=capacity.value;
-			//		allEvents[i].getElementsByClassName("attending-input")[0]=
 					allEvents[i].getElementsByClassName("Event-Type")[0].textContent=type.value
 				}
 			}
-		//	eventTitle: title.value,
-		//	eventDescription: description.value,
-		//	eventLocation: locations.value,
-		//	eventType: type.value,
-		//	eventCapacity: capacity.value,
-		//	eventTime: time.value
-
 		}
-
+			
 		closeModal();
 	}
 }
@@ -249,47 +301,6 @@ function going(event)
 			postRequest.setRequestHeader('Content-Type', 'application/json'); //Write header of request object
 			postRequest.send(requestBody); //SEND IT!
 	}
-}
-
-function display(sideWord,mapWord){
-	var currNumEvents = document.getElementsByClassName("in-event");
-	var container = document.getElementsByClassName("event-container")[0];
-	var loop = currNumEvents.length;
-	for(var i=0; i<loop;i++){
-		document.getElementsByClassName("in-event")[0].remove();
-	}
-
-	for(var i=0; i<allEvents.length; i++){
-		var sideFilterWord = allEvents[i].getElementsByClassName("Event-Type")[0].textContent;
-		mapFilterWord = allEvents[i].getElementsByClassName("location-input")[0].textContent;
-		console.log("comparing",sideFilterWord, "and", sideWord);
-		console.log("comparing",mapFilterWord, "and", mapWord);
-		if(sideFilterWord.indexOf(sideWord) >= 0 && mapFilterWord.indexOf(mapWord) >= 0){
-			container.appendChild(allEvents[i]);
-		}
-	}
-}
-
-function filter(){
-	var side = document.getElementsByClassName("side-item");
-	var map = document.getElementsByClassName("marker");
-	var sideWord = "";
-	var mapWord = "";
-	for(var i=0; i<6; i++){
-		console.log(side[i].nextSibling.nextSibling.classList);
-		if(side[i].nextSibling.nextSibling.classList.contains("active")){
-			sideWord = side[i].textContent;
-			console.log("FIRST LOOP:", sideWord);
-		}
-	}
-	for(var i=0; i<map.length; i++){
-		if(map[i].classList.contains("active") && !map[i].classList.contains("disable")){
-			mapWord = map[i].classList[1];
-			console.log("IN SECOND LOOP: ", mapWord);
-		}
-
-	}
-	display(sideWord,mapWord);
 }
 
 function mapbutton(){
