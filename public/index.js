@@ -98,6 +98,75 @@ function closeModal(){
 	backdrop.classList.add("hidden");
 	modal.classList.add("hidden");
 }
+//button functionality
+function display(sideWord,mapWord){
+	var currNumEvents = document.getElementsByClassName("in-event");
+	var container = document.getElementsByClassName("event-container")[0];
+	var loop = currNumEvents.length;
+	for(var i=0; i<loop;i++){
+		document.getElementsByClassName("in-event")[0].remove();
+	}
+
+	for(var i=0; i<allEvents.length; i++){
+		var sideFilterWord = allEvents[i].getElementsByClassName("Event-Type")[0].textContent;
+		mapFilterWord = allEvents[i].getElementsByClassName("location-input")[0].textContent;
+		console.log("comparing",sideFilterWord, "and", sideWord);
+		console.log("comparing",mapFilterWord, "and", mapWord);
+		if(sideFilterWord.indexOf(sideWord) >= 0 && mapFilterWord.indexOf(mapWord) >= 0){
+			container.appendChild(allEvents[i]);
+		}
+	}
+}
+
+function filter(){
+	var side = document.getElementsByClassName("side-item");
+	var map = document.getElementsByClassName("marker");
+	var sideWord = "";
+	var mapWord = "";
+	for(var i=0; i<6; i++){
+		console.log(side[i].nextSibling.nextSibling.classList);
+		if(side[i].nextSibling.nextSibling.classList.contains("active")){
+			sideWord = side[i].textContent;
+			console.log("FIRST LOOP:", sideWord);
+		}
+	}
+	for(var i=0; i<map.length; i++){
+		if(map[i].classList.contains("active") && !map[i].classList.contains("disable")){
+			mapWord = map[i].classList[1];
+			console.log("IN SECOND LOOP: ", mapWord);
+		}
+
+	}
+	display(sideWord,mapWord);
+}
+
+function mapbutton(){
+	var buttons = document.getElementsByClassName("marker");
+	for(var i=0; i<buttons.length; i++){
+		if(buttons[i].classList.contains("active")){
+			buttons[i].classList.remove("active");
+		}
+	}
+	this.classList.add("active");
+	filter();
+}
+
+function checkMapLocations(){
+	var map = document.getElementsByClassName("marker");
+	var safe = 0;
+	for(var i=0; i<map.length; i++){
+		for(var j=0; j<events.length; j++){
+			if(map[i].classList[1] == events[j].getElementsByClassName("location-input")[0].value){
+				safe = 1;
+			}
+		}
+		if(!safe){
+			map[i].remove();
+		}
+		safe = 0;
+	}
+}
+		
 
 function checkValidPost(){
 	var title = document.getElementById("event-title-input");
@@ -116,6 +185,8 @@ function checkValidPost(){
 	else{
 		if (new_event == 1)
 		{
+			var mapLocation = document.getElementsByClassName("marker");
+			console.log(mapLocation);
 			let postRequest = new XMLHttpRequest(); //We gonna use this thing to make and send post request to server.
 			let postURL = "/addEvent"; //This the URL the server needs to make a new event.
 			postRequest.open("POST", postURL); //Open the request so we can put shit in it.
@@ -147,8 +218,31 @@ function checkValidPost(){
 			var eventHTML = Handlebars.templates.eventCardTemplate(eventObjectClient);
 			var num = events.length;
 			var container = document.getElementsByClassName("event-container")[0];
+			var makeNew = 0;
 			container.insertAdjacentHTML("beforeend",eventHTML);
 			allEvents.push(events[num]);
+
+			for(var i=0; i<mapLocation.length; i++){
+				if(mapLocation[i].classList.contains(locations.value)){
+				//do nothing
+				}
+				else{
+					makeNew = 1;
+				}
+			}
+			
+			if(makeNew){
+					var mapContainer = document.getElementsByClassName("in-events")[0];
+					var addClass = locations.value;
+					var loc = document.createElement("div");
+					loc.classList.add("marker");
+					loc.classList.add(addClass);
+					mapContainer.appendChild(loc);
+					loc.addEventListener("click",mapbutton);
+			}
+			
+			
+			console.log(locations.value);	
 			console.log("===================")
 			console.log("old index:", num, "new index:", events.length);
 			console.log(allEvents);
@@ -197,20 +291,13 @@ function checkValidPost(){
 					allEvents[i].getElementsByClassName("location-input")[0].textContent=locations.value;
 					allEvents[i].getElementsByClassName("Time-input")[0].textContent=time.value;
 					allEvents[i].getElementsByClassName("capacity-input")[0].textContent=capacity.value;
-			//		allEvents[i].getElementsByClassName("attending-input")[0]=
 					allEvents[i].getElementsByClassName("Event-Type")[0].textContent=type.value
 				}
 			}
-		//	eventTitle: title.value,
-		//	eventDescription: description.value,
-		//	eventLocation: locations.value,
-		//	eventType: type.value,
-		//	eventCapacity: capacity.value,
-		//	eventTime: time.value
-
 		}
-
+			
 		closeModal();
+		checkMapLocations();
 	}
 }
 
@@ -251,6 +338,7 @@ function going(event)
 	}
 }
 
+<<<<<<< HEAD
 function display(sideWord,mapWord){
 	var currNumEvents = document.getElementsByClassName("in-event");
 	var container = document.getElementsByClassName("event-container")[0];
@@ -305,6 +393,8 @@ function mapbutton(){
 	this.classList.add("active");
 	filter();
 }
+=======
+>>>>>>> 382d951ff056061993b936e604949da6e041178d
 
 function sidebutton(){
 	var clear = document.getElementsByClassName("side-bar-button");
