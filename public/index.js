@@ -134,7 +134,31 @@ function checkValidPost(){
 			let requestBody = JSON.stringify(eventObject); //Change formatting
 			postRequest.setRequestHeader('Content-Type', 'application/json'); //Write header of request object
 			postRequest.send(requestBody); //SEND IT!
-
+		
+			var eventObjectClient = {
+				eventTitle: title.value,
+				eventDescription: description.value,
+				eventLocation: locations.value,
+				eventType: type.value,
+				eventCapacity: capacity.value,
+				eventTime: time.value,
+				eventGoing: 1,
+				eventID: allEvents.length
+			};
+	
+			var eventHTML = Handlebars.templates.eventCardTemplate(eventObjectClient);
+			var num = events.length;
+			var container = document.getElementsByClassName("event-container")[0];
+			container.insertAdjacentHTML("beforeend",eventHTML);
+			allEvents.push(events[num]);
+			console.log("===================")
+			console.log("old index:", num, "new index:", events.length);
+			console.log(allEvents);
+			console.log(events);
+			//make event card with id and going
+			//add to DOMNM:wq
+			//	add to database
+			//	length++
 			/*
  * 			TODO
  * 			ADD EVENT TO THE DOM
@@ -163,6 +187,9 @@ function checkValidPost(){
 			let requestBody = JSON.stringify(eventObject); //Change formatting
 			postRequest.setRequestHeader('Content-Type', 'application/json'); //Write header of request object
 			postRequest.send(requestBody); //SEND IT!
+		
+			console.log("HEHEHEHAHAHA", this);
+
 		}
 
 		closeModal();
