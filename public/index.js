@@ -276,6 +276,8 @@ function displayAllEvents(){
 	var loopCur = document.getElementsByClassName("in-event").length;
 	var clear = document.getElementsByClassName("side-bar-button");
 	var mapButtons = document.getElementsByClassName("marker");
+	document.getElementById("navbar-search-input").value = null;
+
 	for(var i=0; i<mapButtons.length; i++){
 		if(mapButtons[i].classList.contains("active")){
 			mapButtons[i].classList.remove("active");
@@ -290,7 +292,8 @@ function displayAllEvents(){
 		document.getElementsByClassName("in-event")[0].remove();
 	}
 	for(var i=0; i<loopAll;i++){
-		container.appendChild(allEvents[i]);
+		console.log(typeof(allEvents[i]))
+		container.appendChild(Object(allEvents[i]));
 	}
 }
 //Filter buttons
@@ -356,8 +359,8 @@ for (let i = 0; i < goingButton.length; i++)
 
 	  var inputs = document.getElementsByTagName('input');
 
-		var clear = document.getElementsByClassName("clear")[0];
-		clear.addEventListener("click",displayAllEvents);
+		//var clear = document.getElementsByClassName("clear")[0];
+		//clear.addEventListener("click",displayAllEvents);
 
 	  var whiteList = [];
 	  eventsCash.length = 0;
@@ -368,7 +371,7 @@ for (let i = 0; i < goingButton.length; i++)
 	  for (i = 0; i < inputs.length; i++) {
 	      inputs[i].onkeyup = function() {
 
-
+				console.log(eventsCash);
 	      p1 = document.getElementById("navbar-search-input").value;
 
 
