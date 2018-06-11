@@ -2,8 +2,6 @@
 
 //TODO List (For Jason and LK)
 /*
- * Make the side bar turn green and filter when clicked.  One at a time.
-* Location dots too same as this^
 * Make search bar work on the top (Make sure that if filters are on it deletes the ones that don't fit the filter also.)
  * Add event to the DOM when it is created.
  * Add Coordinates for IM Field (ask Reese).
@@ -183,12 +181,32 @@ function checkValidPost(){
 				eventCapacity: capacity.value,
 				eventTime: time.value
 			};
-
+			console.log(time.value);
 			let requestBody = JSON.stringify(eventObject); //Change formatting
 			postRequest.setRequestHeader('Content-Type', 'application/json'); //Write header of request object
 			postRequest.send(requestBody); //SEND IT!
 		
-			console.log("HEHEHEHAHAHA", this);
+			console.log("HEHEHEHAHAHA", allEvents[0].getElementsByClassName("id")[0].textContent,id);
+			console.log(time.value);
+			for(var i=0; i<allEvents.length;i++){
+				console.log("comparing:",allEvents[i].getElementsByClassName("id")[0].textContent,"to", id);
+				if(id == allEvents[i].getElementsByClassName('id')[0].textContent){
+					console.log("WE GOT A MATCH", time.value, "lval:", allEvents[i].getElementsByClassName("Time-input")[0].textContent);
+					allEvents[i].getElementsByClassName("event-title")[0].textContent=title.value;
+					allEvents[i].getElementsByClassName("event-description")[0].textContent=description.value;
+					allEvents[i].getElementsByClassName("location-input")[0].textContent=locations.value;
+					allEvents[i].getElementsByClassName("Time-input")[0].textContent=time.value;
+					allEvents[i].getElementsByClassName("capacity-input")[0].textContent=capacity.value;
+			//		allEvents[i].getElementsByClassName("attending-input")[0]=
+					allEvents[i].getElementsByClassName("Event-Type")[0].textContent=type.value
+				}
+			}
+		//	eventTitle: title.value,
+		//	eventDescription: description.value,
+		//	eventLocation: locations.value,
+		//	eventType: type.value,
+		//	eventCapacity: capacity.value,
+		//	eventTime: time.value
 
 		}
 
