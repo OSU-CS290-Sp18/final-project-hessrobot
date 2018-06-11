@@ -295,7 +295,6 @@ function checkValidPost(){
 				}
 			}
 		}
-			
 		closeModal();
 		checkMapLocations();
 	}
@@ -338,7 +337,6 @@ function going(event)
 	}
 }
 
-<<<<<<< HEAD
 function display(sideWord,mapWord){
 	var currNumEvents = document.getElementsByClassName("in-event");
 	var container = document.getElementsByClassName("event-container")[0];
@@ -393,8 +391,6 @@ function mapbutton(){
 	this.classList.add("active");
 	filter();
 }
-=======
->>>>>>> 382d951ff056061993b936e604949da6e041178d
 
 function sidebutton(){
 	var clear = document.getElementsByClassName("side-bar-button");
